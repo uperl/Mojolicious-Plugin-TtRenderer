@@ -2,10 +2,75 @@ package MojoX::Renderer::TT;
 
 use warnings;
 use strict;
+use base 'Mojo::Base';
+
+use Template ();
+use Carp ();
+
+__PACKAGE__->attr('tt',
+    chained => 1,
+);
+
+
+sub new {
+    my $self = shift->SUPER::new(@_);
+    $self->_init(@_);
+    return sub { $self->_render(@_) }
+}
+
+sub _init {
+    my $self = shift;
+    my %args = @_;
+
+    my $mojo = delete $args{mojo};
+
+    my $dir = $mojo && $mojo->home->rel_dir('tmp/ctpl');
+
+    # TODO
+    #   take and process options :-)
+    
+    my %config = (
+        COMPILE_EXT => '.ttc',
+        COMPILE_DIR => ($dir || "/tmp"),
+        UNICODE     => 1,
+        ENCODING    => 'utf-8',
+        CACHE_SIZE  => 128,
+        RELATIVE    => 1,
+        ABSOLUTE    => 1,
+    );
+
+    $self->tt(Template->new( \%config ))
+      or Carp::croak "Could not initialize Template object: $Template::ERROR";
+
+    return $self;
+}
+
+sub _render {
+    my ($self, $c, $tx, $path) = @_;
+
+    #use Data::Dump qw(dump);
+    #warn dump(\@args);
+
+    my $output;
+    unless ( $self->tt->process( $path, 
+                                 { c  => $c,
+                                   tx => $tx,
+                                 },
+                                 \$output,
+                                 { binmode => ":utf8" }
+                               )
+           ) {
+        Carp::carp $self->tt->error . "\n";
+        return $self->tt->error;  
+    }
+    else {
+        return $output;
+    }
+}
 
 =head1 NAME
 
-MojoX::Renderer::TT - The great new MojoX::Renderer::TT!
+MojoX::Renderer::TT - Template Toolkit renderer for Mojo
 
 =head1 VERSION
 
@@ -18,35 +83,20 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
 Perhaps a little code snippet.
 
     use MojoX::Renderer::TT;
 
-    my $foo = MojoX::Renderer::TT->new();
-    ...
+    sub startup {
+       ...
+       $renderer->add_handler( tt => MojoX::Renderer::TT->new( mojo => $self ) );
+    }
 
-=head1 EXPORT
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=head1 METHODS
 
-=head1 FUNCTIONS
+=head2 new
 
-=head2 function1
-
-=cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
