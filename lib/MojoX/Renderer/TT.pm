@@ -9,7 +9,6 @@ use Carp     ();
 
 __PACKAGE__->attr('tt', chained => 1,);
 
-
 sub new {
     my $self = shift->SUPER::new(@_);
     $self->_init(@_);
@@ -44,23 +43,15 @@ sub _init {
 }
 
 sub _render {
-    my ($self, $c, $tx, $path) = @_;
+    my ($self, $mojo, $tx, $path, $args) = @_;
+
+    $args ||= {};
 
     #use Data::Dump qw(dump);
-    #warn dump(\@args);
+    #warn dump(\$args);
 
     my $output;
-    unless (
-        $self->tt->process(
-            $path,
-            {   c  => $c,
-                tx => $tx,
-            },
-            \$output,
-            {binmode => ":utf8"}
-        )
-      )
-    {
+    unless ($self->tt->process($path, {%$args, tx => $tx}, \$output, {binmode => ":utf8"})) {
         Carp::carp $self->tt->error . "\n";
         return $self->tt->error;
     }
@@ -84,24 +75,42 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Perhaps a little code snippet.
+Add the handler:
 
     use MojoX::Renderer::TT;
 
     sub startup {
        ...
-       $renderer->add_handler( tt => MojoX::Renderer::TT->new( mojo => $self ) );
+       $self->renderer->add_handler( tt => MojoX::Renderer::TT->new( mojo => $self ) );
     }
+
+And then in the handler call render which will call the
+MojoX::Renderer::TT renderer.
+
+   $c->render(foo => 123, bar => [qw(giz mo)]);
 
 
 =head1 METHODS
 
 =head2 new
 
+This currently requires a C<mojo> parameter pointing to the base class (Mojo).
+object.  This method returns not a TT object, but a handler for the Mojo renderer.
 
 =head1 AUTHOR
 
 Ask Bjørn Hansen, C<< <ask at develooper.com> >>
+
+=head1 TODO
+
+   * Rename C<new> to something more sensical?
+   * Better support non-Mojolicious frameworks
+   * Don't require the mojo parameter
+   * Move the default template cache directory?
+   * Should the "tx" tpl parameter be called "c" (for context) instead?
+   * Accept options for setting up the Tempate object
+   * Better way to pass parameters to the templates?
+   * More sophisticated default search path?
 
 =head1 BUGS
 
