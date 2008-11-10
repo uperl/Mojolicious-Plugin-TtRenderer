@@ -34,6 +34,7 @@ sub _init {
         CACHE_SIZE  => 128,
         RELATIVE    => 1,
         ABSOLUTE    => 1,
+        %{$args{template_options} || {}},
     );
 
     $self->tt(Template->new(\%config))
@@ -64,13 +65,9 @@ sub _render {
 
 MojoX::Renderer::TT - Template Toolkit renderer for Mojo
 
-=head1 VERSION
-
-Version 0.01
-
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -81,7 +78,16 @@ Add the handler:
 
     sub startup {
        ...
-       $self->renderer->add_handler( tt => MojoX::Renderer::TT->new( mojo => $self ) );
+
+       my $tt = MojoX::Renderer::TT->new(
+            mojo => $self,
+            template_options =>
+             { PROCESS => 'tpl/wrapper',
+               FILTERS => [ foo => [ \&filter_factory, 1]
+             }
+       );
+
+       $self->renderer->add_handler( html => $tt );
     }
 
 And then in the handler call render which will call the
@@ -94,8 +100,22 @@ MojoX::Renderer::TT renderer.
 
 =head2 new
 
-This currently requires a C<mojo> parameter pointing to the base class (Mojo).
-object.  This method returns not a TT object, but a handler for the Mojo renderer.
+This method returns not a TT object, but a handler for the Mojo renderer.
+
+Supported parameters are
+
+=over 4
+
+=item mojo
+C<new> currently requires a C<mojo> parameter pointing to the base class (Mojo).
+object.
+
+=item template_options
+
+A hash reference of options that are passed to Template->new(). 
+
+=back
+
 
 =head1 AUTHOR
 
@@ -108,8 +128,7 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
    * Don't require the mojo parameter
    * Move the default template cache directory?
    * Should the "tx" tpl parameter be called "c" (for context) instead?
-   * Accept options for setting up the Tempate object
-   * Better way to pass parameters to the templates?
+   * Better way to pass parameters to the templates? (stash)
    * More sophisticated default search path?
 
 =head1 BUGS

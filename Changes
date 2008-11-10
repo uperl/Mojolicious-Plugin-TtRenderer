@@ -1,6 +1,7 @@
 Revision history for MojoX-Renderer-TT
 
-0.02
+0.02    November 10, 2008
+        - Add template_options parameter
         - Fix Template dependency
 
 0.01    November 9, 2008
