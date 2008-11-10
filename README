@@ -21,6 +21,10 @@ perldoc command.
 
 You can also look for information at:
 
+    Git repository
+        http://git.develooper.com/?p=MojoX-Renderer-TT.git;a=summary
+        git://git.develooper.com/MojoX-Renderer-TT.git
+
     RT, CPAN's request tracker
         http://rt.cpan.org/NoAuth/Bugs.html?Dist=MojoX-Renderer-TT
 

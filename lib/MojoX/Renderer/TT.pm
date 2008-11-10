@@ -61,6 +61,13 @@ sub _render {
     }
 }
 
+
+1;    # End of MojoX::Renderer::TT
+
+__END__
+
+=encoding utf-8
+
 =head1 NAME
 
 MojoX::Renderer::TT - Template Toolkit renderer for Mojo
@@ -146,18 +153,20 @@ You can find documentation for this module with the perldoc command.
 
     perldoc MojoX::Renderer::TT
 
-
 You can also look for information at:
 
 =over 4
 
+=item * git repository
+
+L<http://git.develooper.com/?p=MojoX-Renderer-TT.git;a=summary>,
+L<git://git.develooper.com/MojoX-Renderer-TT.git>
+
+L<http://github.com/abh/mojox-renderer-tt/>
+
 =item * RT: CPAN's request tracker
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=MojoX-Renderer-TT>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/MojoX-Renderer-TT>
 
 =item * CPAN Ratings
 
@@ -182,5 +191,3 @@ under the same terms as Perl itself.
 
 
 =cut
-
-1;    # End of MojoX::Renderer::TT
