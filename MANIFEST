@@ -1,8 +1,10 @@
 Changes
 MANIFEST
+MANIFEST.SKIP
 Makefile.PL
 README
 lib/MojoX/Renderer/TT.pm
 t/00-load.t
 t/pod-coverage.t
 t/pod.t
+.perltidyrc
