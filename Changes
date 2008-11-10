@@ -1,5 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
+0.02
+        - Fix Template dependency
+
 0.01    November 9, 2008
-        First version, released on an unsuspecting world.
+        - First version, released on an unsuspecting world.
 
