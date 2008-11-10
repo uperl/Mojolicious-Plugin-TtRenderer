@@ -5,11 +5,9 @@ use strict;
 use base 'Mojo::Base';
 
 use Template ();
-use Carp ();
+use Carp     ();
 
-__PACKAGE__->attr('tt',
-    chained => 1,
-);
+__PACKAGE__->attr('tt', chained => 1,);
 
 
 sub new {
@@ -28,7 +26,7 @@ sub _init {
 
     # TODO
     #   take and process options :-)
-    
+
     my %config = (
         COMPILE_EXT => '.ttc',
         COMPILE_DIR => ($dir || "/tmp"),
@@ -39,7 +37,7 @@ sub _init {
         ABSOLUTE    => 1,
     );
 
-    $self->tt(Template->new( \%config ))
+    $self->tt(Template->new(\%config))
       or Carp::croak "Could not initialize Template object: $Template::ERROR";
 
     return $self;
@@ -52,16 +50,19 @@ sub _render {
     #warn dump(\@args);
 
     my $output;
-    unless ( $self->tt->process( $path, 
-                                 { c  => $c,
-                                   tx => $tx,
-                                 },
-                                 \$output,
-                                 { binmode => ":utf8" }
-                               )
-           ) {
+    unless (
+        $self->tt->process(
+            $path,
+            {   c  => $c,
+                tx => $tx,
+            },
+            \$output,
+            {binmode => ":utf8"}
+        )
+      )
+    {
         Carp::carp $self->tt->error . "\n";
-        return $self->tt->error;  
+        return $self->tt->error;
     }
     else {
         return $output;
@@ -154,4 +155,4 @@ under the same terms as Perl itself.
 
 =cut
 
-1; # End of MojoX::Renderer::TT
+1;    # End of MojoX::Renderer::TT
