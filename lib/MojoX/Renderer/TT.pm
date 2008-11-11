@@ -6,6 +6,7 @@ use base 'Mojo::Base';
 
 use Template ();
 use Carp     ();
+use File::Spec ();
 
 our $VERSION = '0.10';
 
@@ -32,7 +33,7 @@ sub _init {
 
     my %config = (
         COMPILE_EXT => '.ttc',
-        COMPILE_DIR => ($dir || "/tmp"),
+        COMPILE_DIR => ($dir || File::Spec->tmpdir),
         UNICODE     => 1,
         ENCODING    => 'utf-8',
         CACHE_SIZE  => 128,
