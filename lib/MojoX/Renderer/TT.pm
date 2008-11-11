@@ -44,20 +44,18 @@ sub _init {
 }
 
 sub _render {
-    my ($self, $mojo, $tx, $path, $args) = @_;
+    my ($self, $mojo, $path, $output, $tx, $args) = @_;
 
     $args ||= {};
 
     #use Data::Dump qw(dump);
     #warn dump(\$args);
 
-    my $output;
-    unless ($self->tt->process($path, {%$args, tx => $tx}, \$output, {binmode => ":utf8"})) {
+    unless ($self->tt->process($path, {%$args, tx => $tx}, $output, {binmode => ":utf8"})) {
         Carp::carp $self->tt->error . "\n";
-        return $self->tt->error;
-    }
-    else {
-        return $output;
+        return 0;
+    } else {
+        return 1;
     }
 }
 

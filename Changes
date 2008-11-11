@@ -1,5 +1,10 @@
 Revision history for MojoX-Renderer-TT
 
+0.03
+        - Add real tests (Viacheslav Tikhanovskii)
+        - Update to work with new error handling in Mojo
+          (Viacheslav Tikhanovskii)
+
 0.02    November 10, 2008
         - Add template_options parameter
         - Fix Template dependency
