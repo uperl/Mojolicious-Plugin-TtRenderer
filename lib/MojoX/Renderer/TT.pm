@@ -7,7 +7,7 @@ use base 'Mojo::Base';
 use Template ();
 use Carp     ();
 
-our $VERSION = '0.02';
+our $VERSION = '0.10';
 
 __PACKAGE__->attr('tt', chained => 1);
 

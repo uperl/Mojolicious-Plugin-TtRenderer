@@ -1,6 +1,6 @@
 Revision history for MojoX-Renderer-TT
 
-0.03
+0.10    November 12, 2008
         - Update to work with named parameters in new version of Mojo
         - Instead of "tx" pass the context in the "c" variable
         - Rename "new" to "build"
