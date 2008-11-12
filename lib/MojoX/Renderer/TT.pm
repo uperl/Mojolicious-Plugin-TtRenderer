@@ -55,11 +55,13 @@ sub _render {
     #use Data::Dump qw(dump);
     #warn dump(\$args);
 
-    unless ($self->tt->process($args->{path},
-                               {%{$args->{args}},
-                                c => $args->{c}},
-                               $args->{output},
-                               {binmode => ":utf8"})) {
+    unless (
+        $self->tt->process(
+            $args->{path}, {%{$args->{args}}, c => $args->{c}},
+            $args->{output}, {binmode => ":utf8"}
+        )
+      )
+    {
         Carp::carp $self->tt->error . "\n";
         return 0;
     }
