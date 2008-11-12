@@ -48,17 +48,22 @@ sub _init {
 }
 
 sub _render {
-    my ($self, $mojo, $path, $output, $tx, $args) = @_;
+    my ($self, $mojo, $args) = @_;
 
-    $args ||= {};
+    $args->{args} ||= {};
 
     #use Data::Dump qw(dump);
     #warn dump(\$args);
 
-    unless ($self->tt->process($path, {%$args, tx => $tx}, $output, {binmode => ":utf8"})) {
+    unless ($self->tt->process($args->{path},
+                               {%{$args->{args}},
+                                c => $args->{c}},
+                               $args->{output},
+                               {binmode => ":utf8"})) {
         Carp::carp $self->tt->error . "\n";
         return 0;
-    } else {
+    }
+    else {
         return 1;
     }
 }
@@ -130,7 +135,6 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
    * Better support non-Mojolicious frameworks
    * Don't require the mojo parameter
    * Move the default template cache directory?
-   * Should the "tx" tpl parameter be called "c" (for context) instead?
    * Better way to pass parameters to the templates? (stash)
    * More sophisticated default search path?
 

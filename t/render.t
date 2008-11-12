@@ -14,10 +14,10 @@ my $mt = MojoX::Renderer::TT->build;
 my $output;
 my $rv;
 
-$rv = $mt->(undef, 't/render/template.tt2', \$output);
+$rv = $mt->(undef, { path => 't/render/template.tt2', output => \$output });
 is($rv, 1);
 is($output, "4\n");
 
-$rv = $mt->(undef, 't/render/template-error.tt2', \$output);
+$rv = $mt->(undef, { path => 't/render/template-error.tt2', output => \$output });
 is($rv, 0);
 ok($output);
