@@ -7,7 +7,9 @@ use base 'Mojo::Base';
 use Template ();
 use Carp     ();
 
-__PACKAGE__->attr('tt', chained => 1,);
+our $VERSION = '0.02';
+
+__PACKAGE__->attr('tt', chained => 1);
 
 sub new { Carp::croak "MojoX::Renderer::TT->new() is now ->build()" }
 
@@ -71,11 +73,6 @@ __END__
 =head1 NAME
 
 MojoX::Renderer::TT - Template Toolkit renderer for Mojo
-
-=cut
-
-our $VERSION = '0.02';
-
 
 =head1 SYNOPSIS
 
