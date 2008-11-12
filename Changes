@@ -1,6 +1,7 @@
 Revision history for MojoX-Renderer-TT
 
 0.03
+        - Rename "new" to "build"
         - Add real tests (Viacheslav Tikhanovskii)
         - Update to work with new error handling in Mojo
           (Viacheslav Tikhanovskii)

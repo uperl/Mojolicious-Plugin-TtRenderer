@@ -9,7 +9,7 @@ use Mojo::Transaction;
 
 use_ok('MojoX::Renderer::TT');
 
-my $mt = MojoX::Renderer::TT->new;
+my $mt = MojoX::Renderer::TT->build;
 
 my $output;
 my $rv;

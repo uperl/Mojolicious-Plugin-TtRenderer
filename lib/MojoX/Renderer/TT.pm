@@ -9,7 +9,9 @@ use Carp     ();
 
 __PACKAGE__->attr('tt', chained => 1,);
 
-sub new {
+sub new { Carp::croak "MojoX::Renderer::TT->new() is now ->build()" }
+
+sub build {
     my $self = shift->SUPER::new(@_);
     $self->_init(@_);
     return sub { $self->_render(@_) }
@@ -103,9 +105,9 @@ MojoX::Renderer::TT renderer.
 
 =head1 METHODS
 
-=head2 new
+=head2 build
 
-This method returns not a TT object, but a handler for the Mojo renderer.
+This method returns a handler for the Mojo renderer.
 
 Supported parameters are
 
@@ -128,7 +130,6 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
 
 =head1 TODO
 
-   * Rename C<new> to something more sensical?
    * Better support non-Mojolicious frameworks
    * Don't require the mojo parameter
    * Move the default template cache directory?
