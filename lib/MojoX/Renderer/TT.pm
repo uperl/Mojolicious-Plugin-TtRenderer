@@ -90,7 +90,7 @@ Add the handler:
     sub startup {
        ...
 
-       my $tt = MojoX::Renderer::TT->new(
+       my $tt = MojoX::Renderer::TT->build(
             mojo => $self,
             template_options =>
              { PROCESS => 'tpl/wrapper',
