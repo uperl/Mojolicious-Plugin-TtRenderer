@@ -3,3 +3,5 @@
 \.shipit$
 .*\.bak$
 ^\.gitignore$
+\.DS_Store
+Makefile

@@ -7,4 +7,7 @@ lib/MojoX/Renderer/TT.pm
 t/00-load.t
 t/pod-coverage.t
 t/pod.t
+t/render.t
+t/render/template-error.tt2
+t/render/template.tt2
 .perltidyrc
