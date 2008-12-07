@@ -49,17 +49,14 @@ sub _init {
 }
 
 sub _render {
-    my ($self, $mojo, $args) = @_;
+    my ($self, $renderer, $c, $output) = @_;
 
-    $args->{args} ||= {};
-
-    #use Data::Dump qw(dump);
-    #warn dump(\$args);
+    my $template_path = $c->stash->{template_path};
 
     unless (
         $self->tt->process(
-            $args->{path}, {%{$args->{args}}, c => $args->{c}},
-            $args->{output}, {binmode => ":utf8"}
+            $template_path, {%{$c->stash}, c => $c},
+            $output, {binmode => ":utf8"}
         )
       )
     {
