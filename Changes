@@ -1,5 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
+0.20
+        - Updates to work with Mojo 0.9
+        - Add default INCLUDE_PATH
         - Made default compile dir not Unix specific (Viacheslav
           Tikhanovskii)
 

@@ -8,7 +8,7 @@ use Template ();
 use Carp     ();
 use File::Spec ();
 
-our $VERSION = '0.10';
+our $VERSION = '0.20';
 
 __PACKAGE__->attr('tt', chained => 1);
 
@@ -32,6 +32,7 @@ sub _init {
     #   take and process options :-)
 
     my %config = (
+        ( $mojo ? (INCLUDE_PATH => $mojo->home->rel_dir('templates') ) : () ),
         COMPILE_EXT => '.ttc',
         COMPILE_DIR => ($dir || File::Spec->tmpdir),
         UNICODE     => 1,
