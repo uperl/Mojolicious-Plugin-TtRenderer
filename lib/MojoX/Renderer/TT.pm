@@ -8,7 +8,7 @@ use Template ();
 use Carp     ();
 use File::Spec ();
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 __PACKAGE__->attr('tt', chained => 1);
 

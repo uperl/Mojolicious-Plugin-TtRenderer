@@ -1,5 +1,9 @@
 Revision history for MojoX-Renderer-TT
 
+0.21    July 29, 2009
+        - Update stash key from 'template_path' to 'template' to
+          match mojo change (Sebastian Knapp)
+
 0.20    December 9, 2008
         - Updates to work with Mojo 0.9
         - Add default INCLUDE_PATH
