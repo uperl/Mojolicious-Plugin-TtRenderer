@@ -17,13 +17,13 @@ my $mt = MojoX::Renderer::TT->build;
 my $output;
 my $rv;
 
-$c->stash->{template_path} = 't/render/template.tt2';
+$c->stash->{template} = 't/render/template.tt2';
 
 $rv = $mt->(undef, $c, \$output);
 is($rv, 1);
 is($output, "4\n");
 
-$c->stash->{template_path} = 't/render/error.tt2';
+$c->stash->{template} = 't/render/error.tt2';
 $rv = $mt->(undef, $c, \$output);
 is($rv, 0);
 ok($output);

@@ -52,7 +52,7 @@ sub _init {
 sub _render {
     my ($self, $renderer, $c, $output) = @_;
 
-    my $template_path = $c->stash->{template_path};
+    my $template_path = $c->stash->{template};
 
     unless (
         $self->tt->process(
