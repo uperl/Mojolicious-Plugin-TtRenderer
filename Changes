@@ -1,5 +1,10 @@
 Revision history for MojoX-Renderer-TT
 
+        - revert the change of stash key, template_path is the prior
+          source for the template file again (Sebastian Knapp)
+        - reflect recent changes in mojo project (v0.991251) (Sebastian Knapp)
+        - one test with Mojolicious added (Sebastian Knapp)
+
 0.21    July 29, 2009
         - Update stash key from 'template_path' to 'template' to
           match mojo change (Sebastian Knapp)

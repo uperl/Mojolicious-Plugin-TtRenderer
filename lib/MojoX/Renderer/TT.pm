@@ -10,7 +10,7 @@ use File::Spec ();
 
 our $VERSION = '0.21';
 
-__PACKAGE__->attr('tt', chained => 1);
+__PACKAGE__->attr('tt');
 
 sub new { Carp::croak "MojoX::Renderer::TT->new() is now ->build()" }
 
@@ -50,9 +50,12 @@ sub _init {
 }
 
 sub _render {
-    my ($self, $renderer, $c, $output) = @_;
+    my ($self, $renderer, $c, $output, $options) = @_;
 
-    my $template_path = $c->stash->{template};
+    my $template_path;
+    unless($template_path = $c->stash->{'template_path'}) {
+        $template_path = $renderer->template_path($options);
+    }
 
     unless (
         $self->tt->process(
@@ -103,22 +106,23 @@ Add the handler:
 And then in the handler call render which will call the
 MojoX::Renderer::TT renderer.
 
-   $c->render(foo => 123, bar => [qw(giz mo)]);
+   $c->render(templatename, format => 'tex', handler => 'tt2');
 
+Template parameter are taken from $c->stash
 
 =head1 METHODS
 
 =head2 build
 
-This method returns a handler for the Mojo renderer.
+This method returns a handler for the Mojolicious renderer.
 
 Supported parameters are
 
 =over 4
 
 =item mojo
-C<new> currently requires a C<mojo> parameter pointing to the base class (Mojo).
-object.
+C<build> currently uses a C<mojo> parameter pointing to the base class (Mojo).
+object. When used the INCLUDE_PATH will be set to 
 
 =item template_options
 
@@ -134,7 +138,6 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
 =head1 TODO
 
    * Better support non-Mojolicious frameworks
-   * Don't require the mojo parameter
    * Move the default template cache directory?
    * Better way to pass parameters to the templates? (stash)
    * More sophisticated default search path?
