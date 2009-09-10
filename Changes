@@ -1,5 +1,6 @@
 Revision history for MojoX-Renderer-TT
 
+0.30    September 9, 2009
         - revert the change of stash key, template_path is the prior
           source for the template file again (Sebastian Knapp)
         - reflect recent changes in mojo project (v0.991251) (Sebastian Knapp)
