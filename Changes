@@ -1,5 +1,7 @@
 Revision history for MojoX-Renderer-TT
 
+        - Update MANIFEST (oops, thanks Sebastian)
+
 0.30    September 9, 2009
         - Revert the change of template_path stash key
         - Reflect recent changes in mojo project (v0.991251) (Sebastian Knapp)
