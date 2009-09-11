@@ -188,7 +188,7 @@ L<http://search.cpan.org/dist/MojoX-Renderer-TT/>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2008 Ask Bjørn Hansen, all rights reserved.
+Copyright 2008-2009 Ask Bjørn Hansen, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
