@@ -12,8 +12,6 @@ our $VERSION = '0.30';
 
 __PACKAGE__->attr('tt');
 
-sub new { Carp::croak "MojoX::Renderer::TT->new() is now ->build()" }
-
 sub build {
     my $self = shift->SUPER::new(@_);
     $self->_init(@_);

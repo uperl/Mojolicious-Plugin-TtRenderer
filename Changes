@@ -1,5 +1,6 @@
 Revision history for MojoX-Renderer-TT
 
+        - Remove deprecated 'new' method
         - Update MANIFEST (oops, thanks Sebastian)
 
 0.30    September 9, 2009
