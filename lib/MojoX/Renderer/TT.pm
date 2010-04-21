@@ -94,19 +94,22 @@ Add the handler:
             mojo => $self,
             template_options =>
              { PROCESS => 'tpl/wrapper',
-               FILTERS => [ foo => [ \&filter_factory, 1]
+               FILTERS => [ foo => [ \&filter_factory, 1],
+               ENCODING => 'UTF-8',
              }
        );
 
-       $self->renderer->add_handler( html => $tt );
+       $self->renderer->add_handler( tt => $tt );
     }
 
 And then in the handler call render which will call the
 MojoX::Renderer::TT renderer.
 
-   $c->render(templatename, format => 'tex', handler => 'tt2');
+   $c->render($templatename);
 
-Template parameter are taken from $c->stash
+The template file for C<"example/welcome"> would be C<"templates/welcome.html.tt">.
+
+Template parameter are taken from C< $c->stash >.
 
 =head1 METHODS
 
