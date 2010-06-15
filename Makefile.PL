@@ -13,7 +13,7 @@ WriteMakefile(
     PL_FILES            => {},
     PREREQ_PM => {
         'Test::More' => 0,
-        'Mojo'       => 0.991251,
+        'Mojo'       => 0.999926,
         'Template'   => 2.18,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

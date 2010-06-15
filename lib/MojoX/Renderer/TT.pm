@@ -2,13 +2,13 @@ package MojoX::Renderer::TT;
 
 use warnings;
 use strict;
+
 use base 'Mojo::Base';
 
 use Template ();
-use Carp     ();
 use File::Spec ();
 
-our $VERSION = '0.31';
+our $VERSION = '0.32';
 
 __PACKAGE__->attr('tt');
 
@@ -30,7 +30,7 @@ sub _init {
     #   take and process options :-)
 
     my %config = (
-        ( $mojo ? (INCLUDE_PATH => $mojo->home->rel_dir('templates') ) : () ),
+        ($mojo ? (INCLUDE_PATH => $mojo->home->rel_dir('templates')) : ()),
         COMPILE_EXT => '.ttc',
         COMPILE_DIR => ($dir || File::Spec->tmpdir),
         UNICODE     => 1,
@@ -41,6 +41,9 @@ sub _init {
         %{$args{template_options} || {}},
     );
 
+    $config{LOAD_TEMPLATES} = [Mojo::Template::Provider->new(%config, renderer => $mojo->renderer)]
+      unless $config{LOAD_TEMPLATES};
+
     $self->tt(Template->new(\%config))
       or Carp::croak "Could not initialize Template object: $Template::ERROR";
 
@@ -50,28 +53,81 @@ sub _init {
 sub _render {
     my ($self, $renderer, $c, $output, $options) = @_;
 
-    my $template_path;
-    unless($template_path = $c->stash->{'template_path'}) {
-        $template_path = $renderer->template_path($options);
-    }
+    # Template
+    return unless my $t    = $renderer->template_name($options);
+    return unless my $path = $renderer->template_path($options);
 
-    unless (
-        $self->tt->process(
-            $template_path, {%{$c->stash}, c => $c},
-            $output, {binmode => ":utf8"}
-        )
-      )
-    {
-        Carp::carp $self->tt->error . "\n";
+    my @params = ({%{$c->stash}, c => $c}, $output, {binmode => ':utf8'});
+    $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0]->ctx($c);
+    my $ok = $self->tt->process($path, @params);
+
+    # Error
+    unless ($ok) {
+        my $e = $self->tt->error;
+
+        if ($e =~ m/not found/) {
+            $c->app->log->error(qq/Template "$t" missing or not readable./);
+            $c->render_not_found;
+            return;
+        }
+
+        $$output = '';
+        $c->app->log->error(qq/Template error in "$t": $e/);
+        $c->render_exception($e);
+        $self->tt->error('');
         return 0;
     }
-    else {
-        return 1;
-    }
+
+    return 1;
 }
 
-
 1;    # End of MojoX::Renderer::TT
+
+package Mojo::Template::Provider;
+
+use strict;
+use warnings;
+
+use base 'Template::Provider';
+
+sub new {
+    my $class = shift;
+    my %params = @_;
+
+    my $renderer = delete $params{renderer};
+
+    my $self = $class->SUPER::new(%params);
+    $self->renderer($renderer);
+    return $self;
+}
+
+sub renderer { @_ > 1 ? $_[0]->{renderer} = $_[1] : $_[0]->{renderer} }
+sub ctx      { @_ > 1 ? $_[0]->{ctx}      = $_[1] : $_[0]->{ctx} }
+
+sub _template_modified {1}
+
+sub _template_content {
+    my $self = shift;
+    my ($path) = @_;
+
+    my $t = (File::Spec->splitpath($path))[2];
+
+    if (-r $path) {
+        return $self->SUPER::_template_content(@_);
+    }
+
+    # Try DATA section
+    elsif (my $d = $self->renderer->get_inline_template($self->ctx, $t)) {
+        return wantarray ? ($d, '', time) : $d;
+    }
+
+    my $data = '';
+    my $error = "$path: not found";
+    my $mod_date = time;
+    return wantarray ? ($data, $error, $mod_date) : $data;
+}
+
+1;
 
 __END__
 
@@ -102,6 +158,9 @@ Add the handler:
        $self->renderer->add_handler( tt => $tt );
     }
 
+    # Or using a plugin
+    $self->plugin(tt_renderer => {FILTERS => [ ... ]});
+
 And then in the handler call render which will call the
 MojoX::Renderer::TT renderer.
 
@@ -127,10 +186,9 @@ object. When used the INCLUDE_PATH will be set to
 
 =item template_options
 
-A hash reference of options that are passed to Template->new(). 
+A hash reference of options that are passed to Template->new().
 
 =back
-
 
 =head1 AUTHOR
 
@@ -145,12 +203,11 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-mojox-renderer-tt at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MojoX-Renderer-TT>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
+Please report any bugs or feature requests to C<bug-mojox-renderer-tt at rt.cpan.org>,
+or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MojoX-Renderer-TT>.  I will be
+notified, and then you'll automatically be notified of progress on your bug as I
+make changes.
 
 =head1 SUPPORT
 
@@ -183,16 +240,14 @@ L<http://search.cpan.org/dist/MojoX-Renderer-TT/>
 
 =back
 
-
 =head1 ACKNOWLEDGEMENTS
 
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2008-2009 Ask Bjørn Hansen, all rights reserved.
+Copyright 2008-2010 Ask Bjørn Hansen, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
-
 
 =cut
