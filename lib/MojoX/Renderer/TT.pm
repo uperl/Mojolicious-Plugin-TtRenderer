@@ -173,34 +173,46 @@ MojoX::Renderer::TT - Template Toolkit renderer for Mojo
 
 Add the handler:
 
-    use MojoX::Renderer::TT;
-
     sub startup {
-       ...
+        ...
 
-       my $tt = MojoX::Renderer::TT->build(
+        # Via mojolicious plugin
+        $self->plugin(tt_renderer => {FILTERS => [ ... ]});
+
+        # Or manually
+        use MojoX::Renderer::TT;
+
+        my $tt = MojoX::Renderer::TT->build(
             mojo => $self,
-            template_options =>
-             { PROCESS => 'tpl/wrapper',
-               FILTERS => [ foo => [ \&filter_factory, 1],
-               ENCODING => 'UTF-8',
-             }
-       );
+            template_options => {
+                PROCESS  => 'tpl/wrapper',
+                FILTERS  => [ ... ],
+                UNICODE  => 1,
+                ENCODING => 'UTF-8',
+            }
+        );
 
-       $self->renderer->add_handler( tt => $tt );
+        $self->renderer->add_handler( tt => $tt );
     }
 
-    # Or using a plugin
-    $self->plugin(tt_renderer => {FILTERS => [ ... ]});
+Template parameter are taken from C< $c->stash >.
 
-And then in the handler call render which will call the
-MojoX::Renderer::TT renderer.
-
-   $c->render($templatename);
+=head1 RENDERING
 
 The template file for C<"example/welcome"> would be C<"templates/welcome.html.tt">.
 
-Template parameter are taken from C< $c->stash >.
+When template file is not available rendering from C<__DATA__> is attempted.
+
+    __DATA__
+
+    @@ welcome.html.tt
+    Welcome, [% user.name %]!
+
+=head1 HELPERS
+
+Helpers are exported automatically under C<h> namespace.
+
+    [% h.url_for('index') %]
 
 =head1 METHODS
 
