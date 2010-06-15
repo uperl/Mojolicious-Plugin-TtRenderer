@@ -5,7 +5,7 @@ use warnings;
 
 use utf8;
 
-use Test::More tests => 17;
+use Test::More tests => 19;
 
 use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
@@ -26,6 +26,8 @@ get '/with_wrapper' => 'wrapper';
 
 get '/unicode' => 'unicode';
 
+get '/helpers' => 'helpers';
+
 get '/on-disk' => 'foo';
 
 get '/foo/:message' => 'index';
@@ -45,7 +47,10 @@ $t->get_ok('/with_include')->content_is("Hello\n\nInclude!\n\n");
 $t->get_ok('/with_wrapper')->content_is("wrapped\n\n\n");
 
 # Unicode
-$t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string . "\n");
+$t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string . "\n\n");
+
+# Helpers
+$t->get_ok('/helpers')->content_is("/helpers\n");
 
 # On Disk
 $t->get_ok('/on-disk')->content_is("4\n");
@@ -78,3 +83,6 @@ w[% content %]d
 
 @@ unicode.html.tt
 привет
+
+@@ helpers.html.tt
+[% h.url_for('helpers') %]

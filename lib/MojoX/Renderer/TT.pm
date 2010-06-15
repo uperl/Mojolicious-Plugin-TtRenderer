@@ -58,7 +58,9 @@ sub _render {
     return unless my $t    = $renderer->template_name($options);
     return unless my $path = $renderer->template_path($options);
 
-    my @params = ({%{$c->stash}, c => $c}, $output, {binmode => ':utf8'});
+    my $helper = MojoX::Renderer::TT::Helper->new(ctx => $c);
+
+    my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0]->ctx($c);
     my $ok = $self->tt->process($path, @params);
 
@@ -83,6 +85,33 @@ sub _render {
 }
 
 1;    # End of MojoX::Renderer::TT
+
+package MojoX::Renderer::TT::Helper;
+
+use strict;
+use warnings;
+
+use base 'Mojo::Base';
+
+our $AUTOLOAD;
+
+__PACKAGE__->attr('ctx');
+
+sub AUTOLOAD {
+    my $self = shift;
+
+    my $method = $AUTOLOAD;
+
+    return if $method =~ /^[A-Z]+?$/;
+    return if $method =~ /^_/;
+    return if $method =~ /(?:\:*?)DESTROY$/;
+
+    $method = (split '::' => $method)[-1];
+
+    return $self->ctx->helper($method => @_);
+}
+
+1;
 
 package MojoX::Renderer::TT::Provider;
 
