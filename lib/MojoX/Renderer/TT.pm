@@ -41,7 +41,8 @@ sub _init {
         %{$args{template_options} || {}},
     );
 
-    $config{LOAD_TEMPLATES} = [Mojo::Template::Provider->new(%config, renderer => $mojo->renderer)]
+    $config{LOAD_TEMPLATES} =
+      [MojoX::Renderer::TT::Provider->new(%config, renderer => $mojo->renderer)]
       unless $config{LOAD_TEMPLATES};
 
     $self->tt(Template->new(\%config))
@@ -83,7 +84,7 @@ sub _render {
 
 1;    # End of MojoX::Renderer::TT
 
-package Mojo::Template::Provider;
+package MojoX::Renderer::TT::Provider;
 
 use strict;
 use warnings;
