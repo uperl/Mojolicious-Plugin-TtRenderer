@@ -16,13 +16,15 @@ app->log->level('fatal');
 
 use_ok('MojoX::Renderer::TT');
 
-plugin 'tt_renderer';
+plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1}};
 
 get '/exception' => 'error';
 
 get '/with_include' => 'include';
 
 get '/with_wrapper' => 'wrapper';
+
+#get '/with_auto_wrapper' => sub { shift->render(auto_wrapper => layout => 'layout') };
 
 get '/unicode' => 'unicode';
 
@@ -40,25 +42,28 @@ my $t = Test::Mojo->new;
 $t->get_ok('/exception')->status_is(500)->content_like(qr/error/i);
 
 # Normal rendering
-$t->get_ok('/foo/hello')->content_is("hello\n\n");
+$t->get_ok('/foo/hello')->content_is("hello");
 
 # With include
-$t->get_ok('/with_include')->content_is("Hello\n\nInclude!\n\n");
+$t->get_ok('/with_include')->content_is("HelloInclude!Hallo");
 
 # With wrapper
-$t->get_ok('/with_wrapper')->content_is("wrapped\n\n\n");
+$t->get_ok('/with_wrapper')->content_is("wrapped");
+
+# With auto wrapper
+#$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
 
 # Unicode
-$t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string . "\n\n");
+$t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string);
 
 # Helpers
-$t->get_ok('/helpers')->content_is("/helpers\n\n");
+$t->get_ok('/helpers')->content_is("/helpers");
 
 # Unknown helper
 $t->get_ok('/unknown_helper')->status_is(500)->content_like(qr//);
 
 # On Disk
-$t->get_ok('/on-disk')->content_is("4\n");
+$t->get_ok('/on-disk')->content_is("4");
 
 # Not found
 $t->get_ok('/not_found')->status_is(404)->content_like(qr/not found/i);
@@ -74,17 +79,24 @@ __DATA__
 @@ include.inc
 Hello
 
+@@ includes/include.inc
+Hallo
+
 @@ include.html.tt
-[% INCLUDE 'include.inc' -%]
+[%- INCLUDE 'include.inc' -%]
 Include!
+[% INCLUDE 'includes/include.inc' -%]
+
+@@ layouts/layout.html.tt
+w[%- content -%]d
 
 @@ wrapper.html.tt
-[%- WRAPPER 'layout.html.tt' -%]
+[%- WRAPPER 'layouts/layout.html.tt' -%]
 rappe
 [%- END -%]
 
-@@ layout.html.tt
-w[% content %]d
+@@ auto_wrapper.html.tt
+rappe
 
 @@ unicode.html.tt
 привет

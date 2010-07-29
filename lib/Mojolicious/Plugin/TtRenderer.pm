@@ -12,7 +12,7 @@ sub register {
 
     $args ||= {};
 
-    my $tt = MojoX::Renderer::TT->build(%$args, mojo => $app);
+    my $tt = MojoX::Renderer::TT->build(%$args, app => $app);
 
     # Add "tt" handler
     $app->renderer->add_handler(tt => $tt);

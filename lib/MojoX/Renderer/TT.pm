@@ -22,15 +22,17 @@ sub _init {
     my $self = shift;
     my %args = @_;
 
-    my $mojo = delete $args{mojo};
+    #$Template::Parser::DEBUG = 1;
 
-    my $dir = $mojo && $mojo->home->rel_dir('tmp/ctpl');
+    my $app = delete $args{mojo} || delete $args{app};
+
+    my $dir = $app && $app->home->rel_dir('tmp/ctpl');
 
     # TODO
     #   take and process options :-)
 
     my %config = (
-        ($mojo ? (INCLUDE_PATH => $mojo->home->rel_dir('templates')) : ()),
+        ($app ? (INCLUDE_PATH => $app->home->rel_dir('templates')) : ()),
         COMPILE_EXT => '.ttc',
         COMPILE_DIR => ($dir || File::Spec->tmpdir),
         UNICODE     => 1,
@@ -42,7 +44,7 @@ sub _init {
     );
 
     $config{LOAD_TEMPLATES} =
-      [MojoX::Renderer::TT::Provider->new(%config, renderer => $mojo->renderer)]
+      [MojoX::Renderer::TT::Provider->new(%config, renderer => $app->renderer)]
       unless $config{LOAD_TEMPLATES};
 
     $self->tt(Template->new(\%config))
@@ -133,8 +135,8 @@ sub new {
     return $self;
 }
 
-sub renderer { @_ > 1 ? $_[0]->{renderer} = $_[1] : $_[0]->{renderer} }
-sub ctx      { @_ > 1 ? $_[0]->{ctx}      = $_[1] : $_[0]->{ctx} }
+sub renderer      { @_ > 1 ? $_[0]->{renderer}      = $_[1] : $_[0]->{renderer} }
+sub ctx           { @_ > 1 ? $_[0]->{ctx}           = $_[1] : $_[0]->{ctx} }
 
 sub _template_modified {1}
 
@@ -142,7 +144,7 @@ sub _template_content {
     my $self = shift;
     my ($path) = @_;
 
-    my $t = (File::Spec->splitpath($path))[2];
+    my ($t) = ($path =~ m{templates\/(.*)$});
 
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
