@@ -8,8 +8,6 @@ use base 'Mojo::Base';
 use Template ();
 use File::Spec ();
 
-our $VERSION = '0.32';
-
 __PACKAGE__->attr('tt');
 
 sub build {
@@ -88,7 +86,8 @@ sub _render {
 
 1;    # End of MojoX::Renderer::TT
 
-package MojoX::Renderer::TT::Helper;
+package
+  MojoX::Renderer::TT::Helper;
 
 use strict;
 use warnings;
@@ -117,7 +116,8 @@ sub AUTOLOAD {
 
 1;
 
-package MojoX::Renderer::TT::Provider;
+package
+  MojoX::Renderer::TT::Provider;
 
 use strict;
 use warnings;
