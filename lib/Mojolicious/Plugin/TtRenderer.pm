@@ -3,6 +3,8 @@ package Mojolicious::Plugin::TtRenderer;
 use strict;
 use warnings;
 
+our $VERSION = '0.01';
+
 use base 'Mojolicious::Plugin';
 
 use MojoX::Renderer::TT;

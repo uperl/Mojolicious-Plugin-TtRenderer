@@ -32,6 +32,8 @@
 
 ### DEFAULT MANIFEST.SKIP ENDS HERE ####
 
+t/tmp/ctpl
+
 \.DS_Store$
 \.sw.$
 (\w+-)*(\w+)-\d\.\d+(?:\.tar\.gz)?$
