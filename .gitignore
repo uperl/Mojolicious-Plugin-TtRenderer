@@ -10,3 +10,4 @@ MojoX-Renderer-TT-*
 cover_db
 *~
 *.bak
+.build
