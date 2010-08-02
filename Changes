@@ -1,6 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+
+0.40    August 2, 2010
         - Updated for newer Mojo (Viacheslav Tykhanovskyi)
         - Added helpers (Viacheslav Tykhanovskyi)
         - Documentation updates
