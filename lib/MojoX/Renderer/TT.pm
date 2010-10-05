@@ -56,7 +56,7 @@ sub _render {
     my ($self, $renderer, $c, $output, $options) = @_;
 
     # Inline
-    my $inline = $options->{inline};
+    my $inline = $c->{stash}->{inline};
 
     # Template
     my $t = $renderer->template_name($options);
