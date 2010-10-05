@@ -5,8 +5,9 @@ use strict;
 
 use base 'Mojo::Base';
 
-use Template ();
 use File::Spec ();
+use Mojo::ByteStream 'b';
+use Template ();
 
 __PACKAGE__->attr('tt');
 
@@ -54,15 +55,25 @@ sub _init {
 sub _render {
     my ($self, $renderer, $c, $output, $options) = @_;
 
+    # Inline
+    my $inline = $options->{inline};
+
     # Template
-    return unless my $t    = $renderer->template_name($options);
-    return unless my $path = $renderer->template_path($options);
+    my $t = $renderer->template_name($options);
+    $t = 'inline' if defined $inline;
+    return unless $t;
+
+    # Path
+    my $path = $renderer->template_path($options);
+    $path = b($inline)->md5_sum->to_string if defined $inline;
+    return unless $path;
 
     my $helper = MojoX::Renderer::TT::Helper->new(ctx => $c);
 
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0]->ctx($c);
-    my $ok = $self->tt->process($path, @params);
+
+    my $ok = $self->tt->process(defined $inline ? \$inline : $path, @params);
 
     # Error
     unless ($ok) {
@@ -209,6 +220,10 @@ When template file is not available rendering from C<__DATA__> is attempted.
 
     @@ welcome.html.tt
     Welcome, [% user.name %]!
+
+Inline template is also supported:
+
+    $self->render(inline => '[% 1 + 1 %]', handler => 'tt');
 
 =head1 HELPERS
 

@@ -5,7 +5,7 @@ use warnings;
 
 use utf8;
 
-use Test::More tests => 22;
+use Test::More tests => 25;
 
 use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
@@ -35,6 +35,8 @@ get '/unknown_helper' => 'unknown_helper';
 get '/on-disk' => 'foo';
 
 get '/foo/:message' => 'index';
+
+get '/inline' => sub { shift->render(inline => '[% 1 + 1 %]', handler => 'tt') };
 
 my $t = Test::Mojo->new;
 
@@ -67,6 +69,9 @@ $t->get_ok('/on-disk')->content_is("4");
 
 # Not found
 $t->get_ok('/not_found')->status_is(404)->content_like(qr/not found/i);
+
+# Inline
+$t->get_ok('/inline')->status_is(200)->content_is('2');
 
 __DATA__
 
