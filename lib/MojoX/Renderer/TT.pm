@@ -71,6 +71,9 @@ sub _render {
 
     my $helper = MojoX::Renderer::TT::Helper->new(ctx => $c);
 
+    # Purge previous result
+    $$output = '';
+
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0]->ctx($c);
 
