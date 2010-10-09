@@ -190,7 +190,7 @@ Add the handler:
         ...
 
         # Via mojolicious plugin
-        $self->plugin(tt_renderer => {FILTERS => [ ... ]});
+        $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
 
         # Or manually
         use MojoX::Renderer::TT;

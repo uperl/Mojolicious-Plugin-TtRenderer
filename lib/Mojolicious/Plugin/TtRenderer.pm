@@ -31,11 +31,11 @@ Mojolicious::Plugin::TtRenderer - Template Renderer Plugin
 
     # Mojolicious
     $self->plugin('tt_renderer');
-    $self->plugin(tt_renderer => {FILTERS => [ ... ]});
+    $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
 
     # Mojolicious::Lite
     plugin 'tt_renderer';
-    plugin tt_renderer => {FILTERS => [ ... ]};
+    plugin tt_renderer => {template_options => {FILTERS => [ ... ]}};
 
 =head1 DESCRIPTION
 
