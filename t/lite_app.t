@@ -5,7 +5,7 @@ use warnings;
 
 use utf8;
 
-use Test::More tests => 25;
+use Test::More tests => 31;
 
 use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
@@ -24,7 +24,11 @@ get '/with_include' => 'include';
 
 get '/with_wrapper' => 'wrapper';
 
-#get '/with_auto_wrapper' => sub { shift->render(auto_wrapper => layout => 'layout') };
+get '/with_auto_wrapper' => 'auto_wrapper';
+
+get '/inheritance_base' => 'inheritance_base';
+
+get '/inheritance_derived' => 'inheritance_derived';
 
 get '/unicode' => 'unicode';
 
@@ -53,7 +57,11 @@ $t->get_ok('/with_include')->content_is("HelloInclude!Hallo");
 $t->get_ok('/with_wrapper')->content_is("wrapped");
 
 # With auto wrapper
-#$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
+$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
+
+# Inheritance
+$t->get_ok('/inheritance_base')->content_is("untouched");
+$t->get_ok('/inheritance_derived')->content_is("edited");
 
 # Unicode
 $t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string);
@@ -100,8 +108,21 @@ w[%- content -%]d
 rappe
 [%- END -%]
 
+@@ layouts/auto_layout.html.tt
+w[%- h.content -%]d
+
 @@ auto_wrapper.html.tt
+[% CALL h.layout('auto_layout') %]
 rappe
+
+@@ inheritance_base.html.tt
+[% verb = BLOCK %]untouch[% END %]
+[% h.content('verb', verb) %]ed
+
+@@ inheritance_derived.html.tt
+[% CALL h.extends('inheritance_base') %]
+[% verb = BLOCK %]edit[% END %]
+[% h.content('verb', verb) %]
 
 @@ unicode.html.tt
 привет
