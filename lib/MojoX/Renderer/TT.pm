@@ -79,7 +79,7 @@ sub _render {
     unless ($ok) {
         my $e = $self->tt->error;
 
-        if ($e =~ m/not found/) {
+        if ($e =~ m/not found|no such file or directory/i) {
             $c->app->log->error(qq/Template "$t" missing or not readable./);
             $c->render_not_found;
             return;
