@@ -1,6 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+        - Added inline template support (Viacheslav Tykhanovskyi & Ask)
+        - Fixed helper compatibility with Mojolicious 1.0 (Árpád Szász)
 
 0.40    August 2, 2010
         - Updated for newer Mojo (Viacheslav Tykhanovskyi)
