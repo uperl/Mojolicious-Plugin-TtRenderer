@@ -120,9 +120,9 @@ sub AUTOLOAD {
 
     $method = (split '::' => $method)[-1];
 
-    die qq/Unknown helper: $method/ unless $self->ctx->app->renderer->helper->{$method};
+    die qq/Unknown helper: $method/ unless $self->ctx->app->renderer->helpers->{$method};
 
-    return $self->ctx->helper($method => @_);
+    return $self->ctx->$method(@_);
 }
 
 1;
