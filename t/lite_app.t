@@ -34,7 +34,7 @@ get '/unknown_helper' => 'unknown_helper';
 
 get '/on-disk' => 'foo';
 
-get '/foo/:message' => 'index';
+get '/foo/:message' => 'message';
 
 get '/inline' => sub { shift->render(inline => '[% 1 + 1 %]', handler => 'tt') };
 
@@ -75,7 +75,7 @@ $t->get_ok('/inline')->status_is(200)->content_is('2');
 
 __DATA__
 
-@@ index.html.tt
+@@ message.html.tt
 [% message %]
 
 @@ error.html.tt
