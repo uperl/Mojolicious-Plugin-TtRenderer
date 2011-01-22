@@ -77,14 +77,10 @@ sub _render {
 
     # Error
     unless ($ok) {
-        my $e = $self->tt->error;
 
-        if ($e =~ m/not found/) {
-            $c->app->log->error(qq/Template "$t" missing or not readable./);
-            $c->render_not_found;
-            return;
-        }
-
+        my $e = Mojo::Exception->new(
+            $self->tt->error.'',
+            $self->tt->service->process(defined $inline ? \$inline : $path));
         $$output = '';
         $c->app->log->error(qq/Template error in "$t": $e/);
         $c->render_exception($e);
