@@ -34,7 +34,7 @@ get '/unknown_helper' => 'unknown_helper';
 
 get '/on-disk' => 'foo';
 
-get '/foo/:message' => 'index';
+get '/bar/:message' => 'bar';
 
 get '/inline' => sub { shift->render(inline => '[% 1 + 1 %]', handler => 'tt') };
 
@@ -44,7 +44,7 @@ my $t = Test::Mojo->new;
 $t->get_ok('/exception')->status_is(500)->content_like(qr/error/i);
 
 # Normal rendering
-$t->get_ok('/foo/hello')->content_is("hello");
+$t->get_ok('/bar/hello')->content_is("hello");
 
 # With include
 $t->get_ok('/with_include')->content_is("HelloInclude!Hallo");
@@ -56,7 +56,7 @@ $t->get_ok('/with_wrapper')->content_is("wrapped");
 #$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
 
 # Unicode
-$t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string);
+$t->get_ok('/unicode')->content_is("привет");
 
 # Helpers
 $t->get_ok('/helpers')->content_is("/helpers");
@@ -75,7 +75,7 @@ $t->get_ok('/inline')->status_is(200)->content_is('2');
 
 __DATA__
 
-@@ index.html.tt
+@@ bar.html.tt
 [% message %]
 
 @@ error.html.tt

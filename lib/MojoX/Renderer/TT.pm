@@ -52,11 +52,12 @@ sub _init {
     return $self;
 }
 
+use Data::Dumper;
 sub _render {
     my ($self, $renderer, $c, $output, $options) = @_;
 
     # Inline
-    my $inline = $c->{stash}->{inline};
+    my $inline = $options->{inline};
 
     # Template
     my $t = $renderer->template_name($options);
@@ -77,14 +78,10 @@ sub _render {
 
     # Error
     unless ($ok) {
-        my $e = $self->tt->error;
 
-        if ($e =~ m/not found/) {
-            $c->app->log->error(qq/Template "$t" missing or not readable./);
-            $c->render_not_found;
-            return;
-        }
-
+        my $e = Mojo::Exception->new(
+            $self->tt->error.'',
+            $self->tt->service->process(defined $inline ? \$inline : $path));
         $$output = '';
         $c->app->log->error(qq/Template error in "$t": $e/);
         $c->render_exception($e);
