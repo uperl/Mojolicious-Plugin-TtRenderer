@@ -56,7 +56,7 @@ $t->get_ok('/with_wrapper')->content_is("wrapped");
 #$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
 
 # Unicode
-$t->get_ok('/unicode')->content_is(b("привет")->encode('UTF-8')->to_string);
+$t->get_ok('/unicode')->content_is("привет");
 
 # Helpers
 $t->get_ok('/helpers')->content_is("/helpers");
