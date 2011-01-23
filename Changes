@@ -1,8 +1,13 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+        - Require (and be compatible with) Mojolicious 1.0+
         - Added inline template support (Viacheslav Tykhanovskyi & Ask)
+        - Fix inline rendering and test failures (Marcus Ramberg)
         - Fixed helper compatibility with Mojolicious 1.0 (Árpád Szász)
+        - Support new mojolicious error template (Marcus)
+        - Fix unicode test (Marcus & Spleenjack)
+        - Replaced deprecated Mojo dependence with Mojolicious (spleenjack)
 
 0.40    August 2, 2010
         - Updated for newer Mojo (Viacheslav Tykhanovskyi)
