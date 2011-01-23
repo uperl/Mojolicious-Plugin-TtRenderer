@@ -1,6 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+
+1.0     January 22, 2011
         - Require (and be compatible with) Mojolicious 1.0+
         - Added inline template support (Viacheslav Tykhanovskyi & Ask)
         - Fix inline rendering and test failures (Marcus Ramberg)
