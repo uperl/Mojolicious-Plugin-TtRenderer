@@ -155,7 +155,7 @@ sub _template_content {
     my $self = shift;
     my ($path) = @_;
 
-    my ($t) = ($path =~ m{templates\/(.*)$});
+    my ($t) = ($path =~ m{templates[\/|\\](.*)$});
 
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
