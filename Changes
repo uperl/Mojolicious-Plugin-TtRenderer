@@ -1,6 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+
+1.10    February 5, 2011
         - Support Mojolicious 'layout'/'extends' (Maxim Vuets, Marcus
           Ramberg)
         - Fix Strawberry Perl tests (RT#65282, Christiaan Kras, Ask)
