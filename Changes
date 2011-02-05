@@ -1,6 +1,10 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+        - Support Mojolicious 'layout'/'extends' (Maxim Vuets, Marcus
+          Ramberg)
+        - Fix Strawberry Perl tests (RT#65282, Christiaan Kras, Ask)
+        - Update bugtracker URL in META.yml
 
 1.0     January 22, 2011
         - Require (and be compatible with) Mojolicious 1.0+
