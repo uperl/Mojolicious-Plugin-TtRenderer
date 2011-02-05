@@ -3,6 +3,7 @@ Revision history for MojoX-Renderer-TT
 {{$NEXT}}
 
         - Add auto layout support.
+        - Change to render relative paths. 
 
 1.0     January 22, 2011
         - Require (and be compatible with) Mojolicious 1.0+

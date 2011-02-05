@@ -8,6 +8,7 @@ use base 'Mojo::Base';
 use File::Spec ();
 use Mojo::ByteStream 'b';
 use Template ();
+use Cwd qw/abs_path/;
 
 __PACKAGE__->attr('tt');
 
@@ -31,14 +32,13 @@ sub _init {
     #   take and process options :-)
 
     my %config = (
-        ($app ? (INCLUDE_PATH => $app->home->rel_dir('templates')) : ()),
+        ($app ? (INCLUDE_PATH => abs_path($app->home->rel_dir('templates'))) : ()),
         COMPILE_EXT => '.ttc',
-        COMPILE_DIR => ($dir || File::Spec->tmpdir),
+        COMPILE_DIR => ($dir || abs_path(File::Spec->tmpdir)),
         UNICODE     => 1,
         ENCODING    => 'utf-8',
         CACHE_SIZE  => 128,
         RELATIVE    => 1,
-        ABSOLUTE    => 1,
         %{$args{template_options} || {}},
     );
 
@@ -52,7 +52,6 @@ sub _init {
     return $self;
 }
 
-use Data::Dumper;
 sub _render {
     my ($self, $renderer, $c, $output, $options) = @_;
 
@@ -65,7 +64,7 @@ sub _render {
     return unless $t;
 
     # Path
-    my $path = $renderer->template_path($options);
+    my $path = $renderer->template_name($options);
     $path = b($inline)->md5_sum->to_string if defined $inline;
     return unless $path;
 
@@ -155,11 +154,10 @@ sub _template_content {
     my ($path) = @_;
 
     my ($t) = ($path =~ m{templates\/(.*)$});
-
+ 
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
     }
-
     # Try DATA section
     elsif (my $d = $self->renderer->get_inline_template($self->ctx, $t)) {
         return wantarray ? ($d, '', time) : $d;

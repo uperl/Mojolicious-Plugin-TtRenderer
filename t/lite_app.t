@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+BEGIN { $ENV{MOJO_MODE}='testing'; };
+
 use utf8;
 
 use Test::More tests => 27;
@@ -40,7 +42,7 @@ get '/inline' => sub { shift->render(inline => '[% 1 + 1 %]', handler => 'tt') }
 my $t = Test::Mojo->new;
 
 # Exception
-$t->get_ok('/exception')->status_is(500)->content_like(qr/error/i);
+$t->get_ok('/exception')->status_is(500)->content_like(qr/Exception/i);
 
 # Normal rendering
 $t->get_ok('/bar/hello')->content_is("hello");
