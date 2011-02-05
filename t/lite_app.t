@@ -5,10 +5,9 @@ use warnings;
 
 use utf8;
 
-use Test::More tests => 25;
+use Test::More tests => 27;
 
 use Mojolicious::Lite;
-use Mojo::ByteStream 'b';
 use Test::Mojo;
 
 # Silence
@@ -24,7 +23,7 @@ get '/with_include' => 'include';
 
 get '/with_wrapper' => 'wrapper';
 
-#get '/with_auto_wrapper' => sub { shift->render(auto_wrapper => layout => 'layout') };
+get '/with_auto_wrapper' => sub { shift->render( template=> 'auto_wrapper', layout => 'auto_layout') };
 
 get '/unicode' => 'unicode';
 
@@ -53,7 +52,7 @@ $t->get_ok('/with_include')->content_is("HelloInclude!Hallo");
 $t->get_ok('/with_wrapper')->content_is("wrapped");
 
 # With auto wrapper
-#$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
+$t->get_ok('/with_auto_wrapper')->content_is("wrapped");
 
 # Unicode
 $t->get_ok('/unicode')->content_is("привет");
@@ -93,7 +92,10 @@ Include!
 [% INCLUDE 'includes/include.inc' -%]
 
 @@ layouts/layout.html.tt
-w[%- content -%]d
+w[% content %]d
+
+@@ layouts/auto_layout.html.tt
+w[% c.content %]d
 
 @@ wrapper.html.tt
 [%- WRAPPER 'layouts/layout.html.tt' -%]

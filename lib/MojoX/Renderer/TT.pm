@@ -74,6 +74,8 @@ sub _render {
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0]->ctx($c);
 
+    $$output = '';
+
     my $ok = $self->tt->process(defined $inline ? \$inline : $path, @params);
 
     # Error
