@@ -1,8 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
-        - Change to use relative paths.
-
 {{$NEXT}}
+        - Change to use relative paths (Marcus Ramberg)
+        - Add exception template for tests
 
 1.10    February 5, 2011
         - Support Mojolicious 'layout'/'extends' (Maxim Vuets, Marcus
