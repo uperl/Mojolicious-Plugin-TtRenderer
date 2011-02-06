@@ -1,5 +1,7 @@
 Revision history for MojoX-Renderer-TT
 
+        - Change to use relative paths.
+
 {{$NEXT}}
 
 1.10    February 5, 2011
