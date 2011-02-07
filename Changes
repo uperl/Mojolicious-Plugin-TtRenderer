@@ -1,6 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+
+1.11    February 6, 2011
         - Change to use relative paths (Marcus Ramberg)
         - Add exception template for tests
 
