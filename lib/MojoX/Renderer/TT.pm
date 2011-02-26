@@ -150,8 +150,9 @@ sub _template_content {
     my $self = shift;
     my ($path) = @_;
 
-    my ($t) = ($path =~ m{templates[\/|\\](.*)$});
-    $t =~ s/\\/\//g;
+    # Convert backslashes to forward slashes to make inline templates work on Windows
+    $path =~ s/\\/\//g;
+    my ($t) = ($path =~ m{templates\/(.*)$});
 
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
