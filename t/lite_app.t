@@ -94,13 +94,13 @@ __DATA__
 @@ include.inc
 Hello
 
-@@ includes/include.inc
+@@ includes/sub/include.inc
 Hallo
 
 @@ include.html.tt
 [%- INCLUDE 'include.inc' -%]
 Include!
-[% INCLUDE 'includes/include.inc' -%]
+[% INCLUDE 'includes/sub/include.inc' -%]
 
 @@ layouts/layout.html.tt
 w[%- content -%]d

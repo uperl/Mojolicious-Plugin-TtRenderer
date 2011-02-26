@@ -151,6 +151,7 @@ sub _template_content {
     my ($path) = @_;
 
     my ($t) = ($path =~ m{templates[\/|\\](.*)$});
+    $t =~ s/\\/\//g;
 
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
