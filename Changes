@@ -1,6 +1,8 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+
+1.12    February 28, 2011
         - Inline wrappers and includes now work on Windows
           (GH#13, Christiaan Kras)
 
