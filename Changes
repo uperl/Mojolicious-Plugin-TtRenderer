@@ -1,6 +1,7 @@
 Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
+        - Compatibility with Mojolicious 1.3+
 
 1.12    February 28, 2011
         - Inline wrappers and includes now work on Windows

@@ -159,7 +159,7 @@ sub _template_content {
     }
 
     # Try DATA section
-    elsif (my $d = $self->renderer->get_inline_template($self->ctx, $t)) {
+    elsif (my $d = $self->renderer->get_data_template($self->ctx, $t)) {
         return wantarray ? ($d, '', time) : $d;
     }
 
