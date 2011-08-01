@@ -2,7 +2,7 @@ Revision history for MojoX-Renderer-TT
 
 {{$NEXT}}
 
-1.14    August 1, 2011
+1.20    August 1, 2011
         - Drop use of MojoX namespace for Mojolicious::Plugin::TtRenderer::
           (GH#12, Cosimo Streppone)
 
