@@ -16,7 +16,7 @@ use Test::Mojo;
 # Silence
 app->log->level('fatal');
 
-use_ok('MojoX::Renderer::TT');
+use_ok('Mojolicious::Plugin::TtRenderer::Engine');
 
 plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1}};
 

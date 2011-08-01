@@ -3,7 +3,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-	use_ok( 'MojoX::Renderer::TT' );
+	use_ok( 'Mojolicious::Plugin::TtRenderer::Engine' );
 }
 
-diag( "Testing MojoX::Renderer::TT $MojoX::Renderer::TT::VERSION, Perl $], $^X" );
+diag( "Testing Mojolicious::Plugin::TtRenderer::Engine $Mojolicious::Plugin::TtRenderer::Engine::VERSION, Perl $], $^X" );

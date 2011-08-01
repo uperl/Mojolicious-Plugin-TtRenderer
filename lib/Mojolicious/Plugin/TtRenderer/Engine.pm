@@ -1,10 +1,11 @@
-package MojoX::Renderer::TT;
+package Mojolicious::Plugin::TtRenderer::Engine;
 
 use warnings;
 use strict;
 
 use base 'Mojo::Base';
 
+use Carp ();
 use File::Spec ();
 use Mojo::ByteStream 'b';
 use Template ();
@@ -43,7 +44,7 @@ sub _init {
     );
 
     $config{LOAD_TEMPLATES} =
-      [MojoX::Renderer::TT::Provider->new(%config, renderer => $app->renderer)]
+      [Mojolicious::Plugin::TtRenderer::Provider->new(%config, renderer => $app->renderer)]
       unless $config{LOAD_TEMPLATES};
 
     $self->tt(Template->new(\%config))
@@ -64,7 +65,7 @@ sub _render {
     return unless $t;
 
 
-    my $helper = MojoX::Renderer::TT::Helper->new(ctx => $c);
+    my $helper = Mojolicious::Plugin::TtRenderer::Helper->new(ctx => $c);
 
     # Purge previous result
     $$output = '';
@@ -90,10 +91,10 @@ sub _render {
     return 1;
 }
 
-1;    # End of MojoX::Renderer::TT
+1;    # End of Mojolicious::Plugin::TtRenderer::Engine
 
 package
-  MojoX::Renderer::TT::Helper;
+  Mojolicious::Plugin::TtRenderer::Helper;
 
 use strict;
 use warnings;
@@ -123,7 +124,7 @@ sub AUTOLOAD {
 1;
 
 package
-  MojoX::Renderer::TT::Provider;
+  Mojolicious::Plugin::TtRenderer::Provider;
 
 use strict;
 use warnings;
@@ -177,7 +178,7 @@ __END__
 
 =head1 NAME
 
-MojoX::Renderer::TT - Template Toolkit renderer for Mojo
+Mojolicious::Plugin::TtRenderer::Engine - Template Toolkit renderer for Mojo
 
 =head1 SYNOPSIS
 
@@ -190,9 +191,9 @@ Add the handler:
         $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
 
         # Or manually
-        use MojoX::Renderer::TT;
+        use Mojolicious::Plugin::TtRenderer::Engine;
 
-        my $tt = MojoX::Renderer::TT->build(
+        my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
             mojo => $self,
             template_options => {
                 PROCESS  => 'tpl/wrapper',
@@ -240,7 +241,7 @@ Supported parameters are
 
 =item mojo
 C<build> currently uses a C<mojo> parameter pointing to the base class (Mojo).
-object. When used the INCLUDE_PATH will be set to 
+object. When used the INCLUDE_PATH will be set to
 
 =item template_options
 
@@ -271,7 +272,7 @@ make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc MojoX::Renderer::TT
+    perldoc Mojolicious::Plugin::TtRenderer::Engine
 
 You can also look for information at:
 

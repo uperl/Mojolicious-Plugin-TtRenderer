@@ -7,14 +7,14 @@ our $VERSION = '0.01';
 
 use base 'Mojolicious::Plugin';
 
-use MojoX::Renderer::TT;
+use Mojolicious::Plugin::TtRenderer::Engine;
 
 sub register {
     my ($self, $app, $args) = @_;
 
     $args ||= {};
 
-    my $tt = MojoX::Renderer::TT->build(%$args, app => $app);
+    my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(%$args, app => $app);
 
     # Add "tt" handler
     $app->renderer->add_handler(tt => $tt);
@@ -54,6 +54,6 @@ Register renderer in L<Mojolicious> application.
 
 =head1 SEE ALSO
 
-L<MojoX::Renderer::TT>, L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>.
+L<Mojolicious::Plugin::TtRenderer::Engine>, L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>.
 
 =cut
