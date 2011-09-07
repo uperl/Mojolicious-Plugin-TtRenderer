@@ -10,11 +10,13 @@ use File::Spec ();
 use Mojo::ByteStream 'b';
 use Template ();
 use Cwd qw/abs_path/;
+use Scalar::Util 'weaken';
 
 __PACKAGE__->attr('tt');
 
 sub build {
     my $self = shift->SUPER::new(@_);
+    weaken($self->{app});
     $self->_init(@_);
     return sub { $self->_render(@_) }
 }
@@ -130,6 +132,7 @@ use strict;
 use warnings;
 
 use base 'Template::Provider';
+use Scalar::Util 'weaken';
 
 sub new {
     my $class = shift;
@@ -139,6 +142,7 @@ sub new {
 
     my $self = $class->SUPER::new(%params);
     $self->renderer($renderer);
+    weaken($self->{renderer});
     return $self;
 }
 
