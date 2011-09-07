@@ -37,3 +37,11 @@ my $t = Test::Mojo->new;
 # Simple TT template
 $t->get_ok('/')->status_is(200)
   ->content_like(qr/test123456/);
+
+eval "
+  use Devel::Cycle 'find_cycle';
+  find_cycle(app, sub {
+    ok(0, 'Cycle found');
+  });
+";
+
