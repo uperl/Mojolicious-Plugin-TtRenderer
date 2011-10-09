@@ -52,6 +52,12 @@ L<Mojolicious::Plugin> and implements the following new ones.
 
 Register renderer in L<Mojolicious> application.
 
+=head1 EXTRA STASH VARIABLES
+
+The current controller instance can be accessed as C<c>.
+
+   [% c.req.headers.host %]
+
 =head1 SEE ALSO
 
 L<Mojolicious::Plugin::TtRenderer::Engine>, L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>.
