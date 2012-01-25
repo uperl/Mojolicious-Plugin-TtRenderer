@@ -25,9 +25,14 @@ sub _init {
 
     #$Template::Parser::DEBUG = 1;
 
+    my $dir;
     my $app = delete $args{mojo} || delete $args{app};
-
-    my $dir = $app && $app->home->rel_dir('tmp/ctpl');
+    if($dir=$args{cache_dir}) {
+      
+      if($app && substr($dir,0,1) ne '/') {
+        $dir=$app->home->rel_dir('tmp/ctpl');
+      }
+    }
 
     # TODO
     #   take and process options :-)
@@ -247,6 +252,11 @@ object. When used the INCLUDE_PATH will be set to
 
 A hash reference of options that are passed to Template->new().
 
+=item cache_dir
+
+Absolute or relative dir to your app home, to cache processed versions of your
+templates. Will default to a temp-dir if not set.
+
 =back
 
 =head1 AUTHOR
@@ -256,7 +266,6 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
 =head1 TODO
 
    * Better support non-Mojolicious frameworks
-   * Move the default template cache directory?
    * Better way to pass parameters to the templates? (stash)
    * More sophisticated default search path?
 
