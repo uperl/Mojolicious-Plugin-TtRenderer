@@ -1,0 +1,4 @@
+foo
+[% PROCESS doesnotexist.tt IF do_process %]
+bar
+
