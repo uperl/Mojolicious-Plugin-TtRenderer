@@ -40,7 +40,10 @@ sub _init {
     #   take and process options :-)
 
     my %config = (
-        ($app ? (INCLUDE_PATH => abs_path($app->home->rel_dir('templates'))) : ()),
+        (   $app
+            ? (INCLUDE_PATH => (join ":", map { abs_path($_) } @{$app->renderer->paths}))
+            : ()
+        ),
         COMPILE_EXT => '.ttc',
         COMPILE_DIR => ($dir || abs_path(File::Spec->tmpdir)),
         UNICODE     => 1,
