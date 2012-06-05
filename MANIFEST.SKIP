@@ -9,6 +9,7 @@
 
 # Avoid Makemaker generated and utility files.
 \bMANIFEST\.bak
+\bMYMETA.*
 \bMakefile$
 \bblib/
 \bMakeMaker-\d
@@ -41,6 +42,3 @@ t/tmp/ctpl
 \.t\.log$
 
 \.prove$
-
-# XS shit
-\.(?:bs|c|o)$
