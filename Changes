@@ -1,9 +1,12 @@
-Revision history for MojoX-Renderer-TT
+Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Fixed double TT rendering on error (Matthias Bethke (GH#21))
+        - Cache templates in tmpdir by default (Marcus Ramberg)
         - Require Mojolicious 2.51 to avoid memory leaks (GH#19)
         - Document the 'c' stash variable (RT#70866, Matthias Bethke)
         - Fix memory leaks, add tests for them (GH#18, Magnus Holm)
+        - Use app->renderer->paths to find template directories (GH#17)
 
 1.20    August 1, 2011
         - Drop use of MojoX namespace for Mojolicious::Plugin::TtRenderer::
