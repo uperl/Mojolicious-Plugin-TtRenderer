@@ -2,6 +2,7 @@ package Mojolicious::Plugin::TtRenderer::Engine;
 
 use warnings;
 use strict;
+use v5.10;
 
 use base 'Mojo::Base';
 
@@ -30,7 +31,7 @@ sub _init {
     my $dir;
     my $app = delete $args{mojo} || delete $args{app};
     if($dir=$args{cache_dir}) {
-      
+
       if($app && substr($dir,0,1) ne '/') {
         $dir=$app->home->rel_dir('tmp/ctpl');
       }
@@ -88,11 +89,19 @@ sub _render {
     # Error
     unless ($ok) {
 
+        state $rendering_exception;
+
         my $e = Mojo::Exception->new($self->tt->error.'');
         $$output = '';
         $c->app->log->error(qq/Template error in "$t": $e/);
-        $c->render_exception($e);
-        $self->tt->error('');
+
+        unless($rendering_exception)
+        {
+            $rendering_exception = 1;
+            $c->render_exception($e);
+            $rendering_exception = 0;
+            $self->tt->error('');
+        }
     }
 
     return 1;
