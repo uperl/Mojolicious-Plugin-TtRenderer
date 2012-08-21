@@ -93,7 +93,6 @@ sub _render {
         $c->app->log->error(qq/Template error in "$t": $e/);
         $c->render_exception($e);
         $self->tt->error('');
-        return 0;
     }
 
     return 1;
