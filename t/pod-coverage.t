@@ -15,4 +15,7 @@ eval "use Pod::Coverage $min_pc";
 plan skip_all => "Pod::Coverage $min_pc required for testing POD coverage"
     if $@;
 
-all_pod_coverage_ok();
+plan tests => 2;
+
+pod_coverage_ok('Mojolicious::Plugin::TtRenderer');
+pod_coverage_ok('Mojolicious::Plugin::TtRenderer::Engine', { also_private => [qr{^tt$}] } );
