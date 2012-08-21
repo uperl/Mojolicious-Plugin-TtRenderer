@@ -1,6 +1,9 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Compatibility with Mojolicious 3.05+
+
+1.21    June 5, 2012
         - Fixed double TT rendering on error (Matthias Bethke (GH#21))
         - Cache templates in tmpdir by default (Marcus Ramberg)
         - Require Mojolicious 2.51 to avoid memory leaks (GH#19)
