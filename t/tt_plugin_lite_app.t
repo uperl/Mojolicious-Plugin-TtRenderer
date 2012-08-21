@@ -43,10 +43,8 @@ $t->get_ok('/')->status_is(200)
   ->content_like(qr/test123456/);
 $t->get_ok('/blow')->status_is(500)->content_like(qr/file error - doesnotexist.tt: No such file or directory/);
 
-eval "
-  use Devel::Cycle 'find_cycle';
-  find_cycle(app, sub {
-    ok(0, 'Cycle found');
-  });
-";
+if(eval q{ use Test::Memory::Cycle; 1 })
+{
+  Test::Memory::Cycle::memory_cycle_ok(app);
+}
 
