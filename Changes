@@ -1,7 +1,9 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
-        - Compatibility with Mojolicious 3.05+
+        - Compatibility with Mojolicious 3.05+ (GH#24)
+        - Avoid deep recursion when exception template dies (GH#25,GH26)
+        - Fixed test failures (GH#27,GH#28)
 
 1.21    June 5, 2012
         - Fixed double TT rendering on error (Matthias Bethke (GH#21))
