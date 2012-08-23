@@ -87,22 +87,7 @@ sub _render {
     my $ok = $self->tt->process(defined $inline ? \$inline : $t, @params);
 
     # Error
-    unless ($ok) {
-
-        state $rendering_exception;
-
-        my $e = Mojo::Exception->new($self->tt->error.'');
-        $$output = '';
-        $c->app->log->error(qq/Template error in "$t": $e/);
-
-        unless($rendering_exception)
-        {
-            $rendering_exception = 1;
-            $c->render_exception($e);
-            $rendering_exception = 0;
-            $self->tt->error('');
-        }
-    }
+    die $self->tt->error unless $ok;
 
     return 1;
 }
