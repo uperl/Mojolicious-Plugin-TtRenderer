@@ -82,7 +82,9 @@ sub _render {
     $$output = '';
 
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
-    $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0]->ctx($c);
+    my $provider = $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0];
+    $provider->options($options);
+    $provider->ctx($c);
 
     my $ok = $self->tt->process(defined $inline ? \$inline : $t, @params);
 
@@ -147,6 +149,7 @@ sub new {
 
 sub renderer      { @_ > 1 ? $_[0]->{renderer}      = $_[1] : $_[0]->{renderer} }
 sub ctx           { @_ > 1 ? $_[0]->{ctx}           = $_[1] : $_[0]->{ctx} }
+sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
 
 sub _template_modified {1}
 
@@ -154,17 +157,32 @@ sub _template_content {
     my $self = shift;
     my ($path) = @_;
 
+    my $options = delete $self->{options};
+    
     # Convert backslashes to forward slashes to make inline templates work on Windows
     $path =~ s/\\/\//g;
     my ($t) = ($path =~ m{templates\/(.*)$});
-
+    
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
     }
 
     # Try DATA section
-    elsif (my $d = $self->renderer->get_data_template($self->ctx, $t)) {
-        return wantarray ? ($d, '', time) : $d;
+    if(defined $options)
+    {
+      my $d = $self->renderer->get_data_template($options);
+      return wantarray ? ($d, '', time) : $d
+        if $d;
+    }
+    else
+    {
+      my $loader = Mojo::Loader->new;
+      foreach my $class (@{ $self->renderer->classes })
+      {
+        my $d = $loader->data($class, $t);
+        return wantarray ? ($d, '', time) : $d
+          if $d;
+      }
     }
 
     my $data = '';
