@@ -7,7 +7,7 @@ BEGIN { $ENV{MOJO_MODE}='testing'; };
 
 use utf8;
 
-use Test::More tests => 31;
+use Test::More tests => 39;
 
 use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
@@ -25,6 +25,10 @@ get '/exception' => 'error';
 get '/with_include' => 'include';
 
 get '/with_wrapper' => 'wrapper';
+
+get '/badinclude' => 'badinclude';
+
+get '/badwrapper' => 'badwrapper';
 
 get '/with_auto_wrapper' => 'auto_wrapper';
 
@@ -54,6 +58,12 @@ $t->get_ok('/bar/hello')->content_is("hello");
 
 # With include
 $t->get_ok('/with_include')->content_is("HelloInclude!Hallo");
+
+# Bad inclde
+$t->get_ok('/badinclude')->status_is(500)->content_like(qr/Exception/i)->content_like(qr/bogus\.inc/);
+
+# Bad wrapper
+$t->get_ok('/badwrapper')->status_is(500)->content_like(qr/Exception/i)->content_like(qr/layouts\/bogus\.html\.tt/);
 
 # With wrapper
 $t->get_ok('/with_wrapper')->content_is("wrapped");
@@ -102,12 +112,21 @@ Hallo
 Include!
 [% INCLUDE 'includes/sub/include.inc' -%]
 
+@@ badinclude.html.tt
+[%- INCLUDE 'bogus.inc' -%]
+not here
+
 @@ layouts/layout.html.tt
 w[%- content -%]d
 
 @@ wrapper.html.tt
 [%- WRAPPER 'layouts/layout.html.tt' -%]
 rappe
+[%- END -%]
+
+@@ badwrapper.html.tt
+[%- WRAPPER 'layouts/bogus.html.tt' %-]
+not here
 [%- END -%]
 
 @@ layouts/auto_layout.html.tt

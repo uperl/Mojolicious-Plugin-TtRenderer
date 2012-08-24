@@ -167,28 +167,25 @@ sub _template_content {
         return $self->SUPER::_template_content(@_);
     }
 
+    my $data;
+    my $error = '';
+
     # Try DATA section
-    if(defined $options)
-    {
-      my $d = $self->renderer->get_data_template($options);
-      return wantarray ? ($d, '', time) : $d
-        if $d;
-    }
-    else
-    {
-      my $loader = Mojo::Loader->new;
-      foreach my $class (@{ $self->renderer->classes })
-      {
-        my $d = $loader->data($class, $t);
-        return wantarray ? ($d, '', time) : $d
-          if $d;
-      }
+    if(defined $options) {
+        $data = $self->renderer->get_data_template($options);
+    } else {
+        my $loader = Mojo::Loader->new;
+        foreach my $class (@{ $self->renderer->classes }) {
+            $data = $loader->data($class, $t);
+            last if $data;
+        }
     }
 
-    my $data = '';
-    my $error = "$path: not found";
-    my $mod_date = time;
-    return wantarray ? ($data, $error, $mod_date) : $data;
+    unless($data) {
+        $data = '';
+        $error = "$path: not found";
+    }
+    return wantarray ? ($data, $error, time) : $data;
 }
 
 1;
