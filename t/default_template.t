@@ -28,7 +28,7 @@ my $t = Test::Mojo->new;
 
 $t->get_ok('/')
     ->status_is(500)
-    ->content_isnt('');
+    ->content_like(qr{foo});
 
 __DATA__
 
