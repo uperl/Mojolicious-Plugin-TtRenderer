@@ -1,6 +1,10 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Windows compatability with Cwd::abs_path
+
+1.25    August 25, 2012
+        - Return 0 on not found, die on error (GH#30)
 
 1.24    August 23, 2012
         - Compatibility with Mojolicious 3.33+
