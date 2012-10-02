@@ -281,7 +281,9 @@ templates. Will default to a temp-dir if not set.
 
 =head1 AUTHOR
 
-Ask Bjørn Hansen, C<< <ask at develooper.com> >>
+Current maintainer: Graham Ollis C<< <plicease@cpan.org> >>
+
+Original author: Ask Bjørn Hansen, C<< <ask at develooper.com> >>
 
 =head1 TODO
 
@@ -291,11 +293,8 @@ Ask Bjørn Hansen, C<< <ask at develooper.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-mojox-renderer-tt at rt.cpan.org>,
-or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MojoX-Renderer-TT>.  I will be
-notified, and then you'll automatically be notified of progress on your bug as I
-make changes.
+Please report any bugs or feature requests to the project's github issue tracker
+L<https://github.com/abh/mojox-renderer-tt/issues?state=open>.
 
 =head1 SUPPORT
 
@@ -314,10 +313,6 @@ L<git://git.develooper.com/MojoX-Renderer-TT.git>
 
 L<http://github.com/abh/mojox-renderer-tt/>
 
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=MojoX-Renderer-TT>
-
 =item * CPAN Ratings
 
 L<http://cpanratings.perl.org/d/MojoX-Renderer-TT>
@@ -328,12 +323,11 @@ L<http://search.cpan.org/dist/MojoX-Renderer-TT/>
 
 =back
 
-=head1 ACKNOWLEDGEMENTS
-
-
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2008-2010 Ask Bjørn Hansen, all rights reserved.
+
+Copyright 2012 Graham Ollis.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

@@ -1,6 +1,9 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - documentation fixes and updates.
+
+1.26    August 31, 2012
         - Windows compatability with Cwd::abs_path
 
 1.25    August 25, 2012
