@@ -2,6 +2,7 @@ package Mojolicious::Plugin::TtRenderer;
 
 use strict;
 use warnings;
+use v5.10;
 
 use base 'Mojolicious::Plugin';
 
@@ -18,7 +19,7 @@ sub register {
     $app->renderer->add_handler(tt => $tt);
 }
 
-local ($Mojolicious :: Plugin :: TtRenderer :: VERSION) = ('devel') unless defined $Mojolicious::Plugin::TtRenderer::VERSION;
+$Mojolicious::Plugin::TtRenderer::VERSION //= ('devel');
 
 1;
 __END__
