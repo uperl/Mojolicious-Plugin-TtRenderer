@@ -23,6 +23,8 @@ local ($Mojolicious :: Plugin :: TtRenderer :: VERSION) = ('devel') unless defin
 1;
 __END__
 
+=encoding utf-8
+
 =head1 NAME
 
 Mojolicious::Plugin::TtRenderer - Template Renderer Plugin
