@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.28    October 11, 2012
         - specify minimum perl version
 
 1.27    October 2, 2012
