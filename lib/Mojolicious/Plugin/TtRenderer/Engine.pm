@@ -85,13 +85,12 @@ sub _render {
 
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     my $provider = $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0];
-    $provider->options($options);
     $provider->ctx($c);
-    $provider->not_found(0);
+    $provider->not_found(1);
 
     my $ok = $self->tt->process(defined $inline ? \$inline : $t, @params);
 
-    return 0 if $provider->not_found;
+    return 0 if !defined $inline && $provider->not_found;
 
     # Error
     die $self->tt->error unless $ok;
@@ -147,6 +146,8 @@ sub new {
     my $renderer = delete $params{renderer};
 
     my $self = $class->SUPER::new(%params);
+    $self->{data_files} = {};
+    $self->{main_path} = $self->paths->[0];
     $self->renderer($renderer);
     weaken($self->{renderer});
     return $self;
@@ -154,45 +155,69 @@ sub new {
 
 sub renderer      { @_ > 1 ? $_[0]->{renderer}      = $_[1] : $_[0]->{renderer} }
 sub ctx           { @_ > 1 ? $_[0]->{ctx}           = $_[1] : $_[0]->{ctx} }
-sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
 sub not_found     { @_ > 1 ? $_[0]->{not_found}     = $_[1] : $_[0]->{not_found} }
 
-sub _template_modified {1}
+# Invoke the real _template_modified and mark the request as found.
+sub _template_modified {
+    my ($self, $path) = @_;
 
-sub _template_content {
-    my $self = shift;
-    my ($path) = @_;
+    if (my $res = $self->_template_modified_base($path)) {
+        $self->not_found(0);
+        return $res;
+    }
+}
 
-    my $options = delete $self->{options};
-    
-    # Convert backslashes to forward slashes to make inline templates work on Windows
-    $path =~ s/\\/\//g;
-    my ($t) = ($path =~ m{templates\/(.*)$});
-    
+sub _template_modified_base {
+    my ($self, $path) = @_;
+
+    # If we already know the path defines a data-file, return it.
+    return 1 if defined $self->{data_files}->{$path};
+
+    # Handle regular files
     if (-r $path) {
-        return $self->SUPER::_template_content(@_);
+        return $self->SUPER::_template_modified($path);
     }
 
-    my $data;
-    my $error = '';
+    # This method will be invoked for every include path, but we only need
+    # to check the data section once. Therefore we keep track of the first
+    # include path and only check if it matches this one.
+    my $main_path = $self->{main_path};
+    my $base_path = $path;
 
-    # Try DATA section
-    if(defined $options) {
-        $data = $self->renderer->get_data_template($options);
-        $self->not_found(1) unless defined $data;
-    } else {
+    if ($base_path =~ s/\A\Q$main_path\///) {
+        # Handle backslashes on Windows
+        $base_path =~ s/\\/\//g;
+
+        # Maintain an index of which files defines which templates.
         my $loader = Mojo::Loader->new;
-        foreach my $class (@{ $self->renderer->classes }) {
-            $data = $loader->data($class, $t);
-            last if $data;
+        unless ($self->{index}) {
+            my $index = $self->{index} = {};
+            for my $class (reverse @{$self->renderer->classes}) {
+                $index->{$_} = $class for keys %{$loader->data($class)};
+            }
+        }
+
+        my $data = $loader->data($self->{index}{$base_path}, $base_path);
+
+        if (defined $data) {
+            $self->{data_files}->{$path} = $data;
+            return 1;
         }
     }
 
-    unless($data) {
-        $data = '';
-        $error = "$path: not found";
+    undef;
+}
+
+sub _template_content {
+    my ($self, $path) = @_;
+
+    my $data = $self->{data_files}->{$path};
+
+    unless (defined $data) {
+        $data = $self->SUPER::_template_content($path);
     }
-    return wantarray ? ($data, $error, time) : $data;
+
+    return wantarray ? ($data, '', time) : $data;
 }
 
 1;
