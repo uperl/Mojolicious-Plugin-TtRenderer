@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - support multiple renderer paths
 
 1.28    October 11, 2012
         - specify minimum perl version

@@ -44,7 +44,7 @@ sub _init {
 
     my %config = (
         (   @renderer_paths > 0
-            ? (INCLUDE_PATH => join(":", @renderer_paths))
+            ? (INCLUDE_PATH => [@renderer_paths, 'templates'])
             : ()
         ),
         COMPILE_EXT => '.ttc',
@@ -157,7 +157,11 @@ sub ctx           { @_ > 1 ? $_[0]->{ctx}           = $_[1] : $_[0]->{ctx} }
 sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
 sub not_found     { @_ > 1 ? $_[0]->{not_found}     = $_[1] : $_[0]->{not_found} }
 
-sub _template_modified {1}
+sub _template_modified {
+    my($self, $template) = @_;
+    return 1 if $self->SUPER::_template_modified($template);
+    return $template =~ /^templates(\/|\\)/;
+}
 
 sub _template_content {
     my $self = shift;
