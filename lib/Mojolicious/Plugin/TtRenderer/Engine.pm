@@ -160,7 +160,7 @@ sub not_found     { @_ > 1 ? $_[0]->{not_found}     = $_[1] : $_[0]->{not_found}
 sub _template_modified {
     my($self, $template) = @_;
     return 1 if $self->SUPER::_template_modified($template);
-    return $template =~ /^templates(\/|\\)/;
+    return $template =~ /^templates(?:\/|\\)/;
 }
 
 sub _template_content {

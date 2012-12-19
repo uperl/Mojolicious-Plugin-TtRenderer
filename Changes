@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.29    December 18, 2012
         - support multiple renderer paths
 
 1.28    October 11, 2012
