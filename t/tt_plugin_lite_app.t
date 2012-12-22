@@ -41,7 +41,7 @@ my $t = Test::Mojo->new;
 # Simple TT template
 $t->get_ok('/')->status_is(200)
   ->content_like(qr/test123456/);
-$t->get_ok('/blow')->status_is(500)->content_like(qr/file error - doesnotexist.tt: No such file or directory/);
+$t->get_ok('/blow')->status_is(500)->content_like(qr/file error - doesnotexist.tt:/);
 
 if(eval q{ use Devel::Cycle; 1 })
 {
