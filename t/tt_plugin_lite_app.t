@@ -6,8 +6,6 @@ use strict;
 use warnings;
 
 BEGIN {
-  #use if $^O ne 'MSWin32', POSIX => qw/setlocale LC_ALL/;
-  #setlocale(&LC_ALL, 'C') if $^O ne 'MSWin32';
   unless($^O eq 'MSWin32') {
     eval q{
       use POSIX qw( setlocale LC_ALL );
