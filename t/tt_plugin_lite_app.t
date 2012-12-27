@@ -5,6 +5,18 @@
 use strict;
 use warnings;
 
+BEGIN {
+  #use if $^O ne 'MSWin32', POSIX => qw/setlocale LC_ALL/;
+  #setlocale(&LC_ALL, 'C') if $^O ne 'MSWin32';
+  unless($^O eq 'MSWin32') {
+    eval q{
+      use POSIX qw( setlocale LC_ALL );
+      setlocale(LC_ALL, 'C');
+    };
+    warn $@ if $@;
+  }
+}
+
 use File::Temp;
 use Mojo::IOLoop;
 use Test::More;
@@ -41,7 +53,7 @@ my $t = Test::Mojo->new;
 # Simple TT template
 $t->get_ok('/')->status_is(200)
   ->content_like(qr/test123456/);
-$t->get_ok('/blow')->status_is(500)->content_like(qr/file error - doesnotexist.tt:/);
+$t->get_ok('/blow')->status_is(500)->content_like(qr/file error - doesnotexist\.tt: No such file or directory/);
 
 if(eval q{ use Devel::Cycle; 1 })
 {

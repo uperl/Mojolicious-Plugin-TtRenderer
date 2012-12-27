@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Set locale "C" in tests that rely on it
 
 1.30    December 22, 2012
         - Don't rely on English locale in the test t/tt_plugin_lite_app.t
