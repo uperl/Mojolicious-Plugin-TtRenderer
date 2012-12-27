@@ -7,7 +7,7 @@ use warnings;
 
 BEGIN {
   unless($^O eq 'MSWin32') {
-    eval q{
+    eval '# line '. __LINE__ . ' "' . __FILE__ . qq("\n). q{
       use POSIX qw( setlocale LC_ALL );
       setlocale(LC_ALL, 'C');
     };
