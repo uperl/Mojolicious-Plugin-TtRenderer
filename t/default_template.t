@@ -2,6 +2,7 @@ use strict;
 use warnings;
 use Test::More tests => 3;
 use Test::Mojo;
+use File::Temp qw( tempdir );
 
 use Mojolicious::Lite;
 
@@ -11,7 +12,7 @@ app->plugin(
         template_options => {
             # These options are specific to TT
             INCLUDE_PATH => 'templates',
-            COMPILE_DIR  => 'templates_c',
+            COMPILE_DIR  => tempdir( CLEANUP => 1 ),
             COMPILE_EXT  => '.ttc',
             # ... anything else to be passed on to TT should go here
         },

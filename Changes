@@ -1,6 +1,11 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - silenced a few annoying warnings during test
+        - use temp directory for COMPILE_DIR in tests to avoid failures if the
+          default compile directory already exists and is owned by someone else.
+
+1.31    December 26, 2012
         - Set locale "C" in tests that rely on it
 
 1.30    December 22, 2012

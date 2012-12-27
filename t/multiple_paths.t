@@ -11,6 +11,7 @@ use Test::More tests => 6;
 
 use Mojolicious::Lite;
 use Test::Mojo;
+use File::Temp qw( tempdir );
 
 # Silence
 app->log->level('fatal');
@@ -18,7 +19,7 @@ app->log->level('fatal');
 my @paths = map { app->home->rel_dir($_) } "templates/multiple_first", "templates/multiple_second";
 app->renderer->paths([@paths]);
 
-plugin 'TtRenderer';
+plugin 'TtRenderer' => {template_options => { COMPILE_DIR => tempdir( CLEANUP => 1 ) }};
 
 get '/first' => 'first';
 get '/second' => 'second';

@@ -20,7 +20,7 @@ use_ok 'Foo';
 
 push @{app->renderer->classes}, 'Foo';
 
-plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1}};
+plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1, COMPILE_DIR => tempdir( CLEANUP => 1 )}};
 
 app->log->level('fatal'); 
 

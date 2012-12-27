@@ -12,13 +12,14 @@ use Test::More tests => 39;
 use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
 use Test::Mojo;
+use File::Temp qw( tempdir );
 
 # Silence
 app->log->level('fatal');
 
 use_ok('Mojolicious::Plugin::TtRenderer::Engine');
 
-plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1}};
+plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1, COMPILE_DIR => tempdir( CLEANUP => 1 ) }};
 
 get '/exception' => 'error';
 

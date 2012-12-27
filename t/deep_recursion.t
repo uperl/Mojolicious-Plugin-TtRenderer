@@ -11,11 +11,14 @@ use Test::More tests => 3;
 
 use Mojolicious::Lite;
 use Test::Mojo;
+use File::Temp qw( tempdir tempfile );
 
+my($fh_log,$filename_log) = tempfile('fooXXXXX', TMPDIR => 1, UNLINK => 1);
 # Silence
 app->log->level('fatal');
+app->log->path($filename_log);
 
-plugin 'tt_renderer';
+plugin 'tt_renderer' => {template_options => { COMPILE_DIR => tempdir( CLEANUP => 1 ) }};
 
 get '/exception' => sub { die };
 
