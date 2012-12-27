@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Fix hang in t/deep_recursion.t on *BSD
 
 1.32    December 27, 2012
         - silenced a few annoying warnings during test

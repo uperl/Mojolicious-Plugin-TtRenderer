@@ -11,12 +11,14 @@ use Test::More tests => 3;
 
 use Mojolicious::Lite;
 use Test::Mojo;
-use File::Temp qw( tempdir tempfile );
+use File::Temp qw( tempdir );
+use File::Spec;
 
-my($fh_log,$filename_log) = tempfile('fooXXXXX', TMPDIR => 1, UNLINK => 1);
-# Silence
+# Send log to tmp file so that it doesn't clutter up the screen.
 app->log->level('fatal');
-app->log->path($filename_log);
+app->log->path(do {
+  File::Spec->catfile(tempdir(CLEANUP => 1), 'mojo.log');
+});
 
 plugin 'tt_renderer' => {template_options => { COMPILE_DIR => tempdir( CLEANUP => 1 ) }};
 
