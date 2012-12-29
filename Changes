@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.34    December 29, 2012
         - Include META.json in distribution.
 
 1.33    December 27, 2012
