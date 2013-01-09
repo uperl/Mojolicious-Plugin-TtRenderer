@@ -171,7 +171,6 @@ sub new {
 sub renderer      { @_ > 1 ? $_[0]->{renderer}      = $_[1] : $_[0]->{renderer} }
 sub ctx           { @_ > 1 ? $_[0]->{ctx}           = $_[1] : $_[0]->{ctx} }
 sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
-sub not_found     { @_ > 1 ? $_[0]->{not_found}     = $_[1] : $_[0]->{not_found} }
 
 sub _template_modified {
     my($self, $template) = @_;
@@ -199,7 +198,6 @@ sub _template_content {
     # Try DATA section
     if(defined $options) {
         $data = $self->renderer->get_data_template($options);
-        $self->not_found(1) unless defined $data;
     } else {
         my $loader = Mojo::Loader->new;
         foreach my $class (@{ $self->renderer->classes }) {
