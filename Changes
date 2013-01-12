@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - fix default_template2.t to use temp directory for COMPILE_DIR
 
 1.36    January 9, 2013
         - Use $provider->fetch to find templates (GH#34)

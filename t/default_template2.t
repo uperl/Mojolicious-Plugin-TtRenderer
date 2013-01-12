@@ -14,6 +14,7 @@ my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
         UNICODE  => 1,
         ENCODING => 'UTF-8',
         INCLUDE_PATH => "$Bin/templates",
+        COMPILE_DIR  => tempdir( CLEANUP => 1 ),
     }
 );
 
