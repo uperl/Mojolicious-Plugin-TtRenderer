@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 6;
+use Test::More tests => 9;
 use Test::Mojo;
 use File::Temp qw( tempdir );
 
@@ -11,7 +11,7 @@ app->plugin(
     tt_renderer => {
         template_options => {
             # These options are specific to TT
-            INCLUDE_PATH => 'templates',
+            #INCLUDE_PATH => 'templates',
             COMPILE_DIR  => tempdir( CLEANUP => 1 ),
             COMPILE_EXT  => '.ttc',
             # ... anything else to be passed on to TT should go here
@@ -27,6 +27,8 @@ get '/' => sub {
 
 get '/bar' => 'bar';
 
+get '/grimlock' => 'grimlock';
+
 my $t = Test::Mojo->new;
 
 $t->get_ok('/')
@@ -37,7 +39,9 @@ $t->get_ok('/bar')
     ->status_is(200)
     ->content_like(qr{bar});
 
-#note $t->tx->res->to_string;
+$t->get_ok('/grimlock')
+    ->status_is(200)
+    ->content_like(qr{King});
 
 __DATA__
 

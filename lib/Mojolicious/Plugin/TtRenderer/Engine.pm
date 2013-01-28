@@ -46,7 +46,7 @@ sub _init {
     my %config = (
         (   @renderer_paths > 0
             ? (INCLUDE_PATH => [@renderer_paths, 'templates'])
-            : ()
+            : (INCLUDE_PATH => ['templates'])
         ),
         COMPILE_EXT => '.ttc',
         COMPILE_DIR => ($dir || abs_path(File::Spec->tmpdir)),
