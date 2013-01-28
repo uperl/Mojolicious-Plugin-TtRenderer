@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.38    January 27, 2013
         - fixed but where DATA templates were not being rendered with empty renderer path
 
 1.37    January 12, 2013
