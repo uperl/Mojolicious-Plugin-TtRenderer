@@ -32,13 +32,13 @@ Mojolicious::Plugin::TtRenderer - Template Renderer Plugin
 
 =head1 SYNOPSIS
 
-    # Mojolicious
-    $self->plugin('tt_renderer');
-    $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
+ # Mojolicious
+ $self->plugin('tt_renderer');
+ $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
 
-    # Mojolicious::Lite
-    plugin 'tt_renderer';
-    plugin tt_renderer => {template_options => {FILTERS => [ ... ]}};
+ # Mojolicious::Lite
+ plugin 'tt_renderer';
+ plugin tt_renderer => {template_options => {FILTERS => [ ... ]}};
 
 =head1 DESCRIPTION
 
@@ -52,7 +52,7 @@ L<Mojolicious::Plugin> and implements the following new ones.
 
 =head2 C<register>
 
-    $plugin->register;
+ $plugin->register;
 
 Register renderer in L<Mojolicious> application.
 
@@ -60,11 +60,14 @@ Register renderer in L<Mojolicious> application.
 
 The current controller instance can be accessed as C<c>.
 
-   [% c.req.headers.host %]
+ [% c.req.headers.host %]
 
 =head1 SEE ALSO
 
-L<Mojolicious::Plugin::TtRenderer::Engine>, L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>.
+L<Mojolicious::Plugin::TtRenderer::Engine>, 
+L<Mojolicious>, 
+L<Mojolicious::Guides>, 
+L<http://mojolicious.org>.
 
 =head1 AUTHOR
 
@@ -81,7 +84,7 @@ L<https://github.com/abh/mojox-renderer-tt/issues?state=open>.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Mojolicious::Plugin::TtRenderer
+ perldoc Mojolicious::Plugin::TtRenderer
 
 You can also look for information at:
 

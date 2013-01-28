@@ -227,27 +227,27 @@ Mojolicious::Plugin::TtRenderer::Engine - Template Toolkit renderer for Mojo
 
 Add the handler:
 
-    sub startup {
-        ...
+ sub startup {
+     ...
+ 
+     # Via mojolicious plugin
+     $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
+ 
+     # Or manually
+     use Mojolicious::Plugin::TtRenderer::Engine;
+ 
+     my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
+         mojo => $self,
+         template_options => {
+             PROCESS  => 'tpl/wrapper',
+             FILTERS  => [ ... ],
+             UNICODE  => 1,
+             ENCODING => 'UTF-8',
+         }
+     );
 
-        # Via mojolicious plugin
-        $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
-
-        # Or manually
-        use Mojolicious::Plugin::TtRenderer::Engine;
-
-        my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
-            mojo => $self,
-            template_options => {
-                PROCESS  => 'tpl/wrapper',
-                FILTERS  => [ ... ],
-                UNICODE  => 1,
-                ENCODING => 'UTF-8',
-            }
-        );
-
-        $self->renderer->add_handler( tt => $tt );
-    }
+     $self->renderer->add_handler( tt => $tt );
+ }
 
 Template parameter are taken from C< $c->stash >.
 
@@ -257,20 +257,20 @@ The template file for C<"example/welcome"> would be C<"templates/welcome.html.tt
 
 When template file is not available rendering from C<__DATA__> is attempted.
 
-    __DATA__
+ __DATA__
 
-    @@ welcome.html.tt
-    Welcome, [% user.name %]!
+ @@ welcome.html.tt
+ Welcome, [% user.name %]!
 
 Inline template is also supported:
 
-    $self->render(inline => '[% 1 + 1 %]', handler => 'tt');
+ $self->render(inline => '[% 1 + 1 %]', handler => 'tt');
 
 =head1 HELPERS
 
 Helpers are exported automatically under C<h> namespace.
 
-    [% h.url_for('index') %]
+ [% h.url_for('index') %]
 
 =head1 METHODS
 
@@ -288,7 +288,11 @@ object. When used the INCLUDE_PATH will be set to
 
 =item template_options
 
-A hash reference of options that are passed to Template->new().
+A hash reference of options that are passed to Template->new().  Note that if you
+specify an C<INCLUDE_PATH> through this option it will remove the DATA section
+templates from your path.  A better way to specify an C<INCLUDE_PATH> if you also
+want to use DATA section templates it by manipulting the L<Mojolicious::Renderer>
+path.
 
 =item cache_dir
 
@@ -297,17 +301,18 @@ templates. Will default to a temp-dir if not set.
 
 =back
 
+=head1 SEE ALSO
+
+L<Mojolicious::Plugin::TtRenderer::Engine>, 
+L<Mojolicious>, 
+L<Mojolicious::Guides>, 
+L<http://mojolicious.org>.
+
 =head1 AUTHOR
 
 Current maintainer: Graham Ollis C<< <plicease@cpan.org> >>
 
 Original author: Ask Bjørn Hansen, C<< <ask at develooper.com> >>
-
-=head1 TODO
-
-   * Better support non-Mojolicious frameworks
-   * Better way to pass parameters to the templates? (stash)
-   * More sophisticated default search path?
 
 =head1 BUGS
 
@@ -318,7 +323,7 @@ L<https://github.com/abh/mojox-renderer-tt/issues?state=open>.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Mojolicious::Plugin::TtRenderer::Engine
+ perldoc Mojolicious::Plugin::TtRenderer::Engine
 
 You can also look for information at:
 
