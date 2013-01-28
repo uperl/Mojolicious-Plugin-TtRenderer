@@ -42,18 +42,16 @@ sub _init {
     #   take and process options :-)
 
     my @renderer_paths = $app ? map { abs_path($_) } grep { -d $_ } @{ $app->renderer->paths } : ();
+    push @renderer_paths, 'templates';
 
     my %config = (
-        (   @renderer_paths > 0
-            ? (INCLUDE_PATH => [@renderer_paths, 'templates'])
-            : (INCLUDE_PATH => ['templates'])
-        ),
-        COMPILE_EXT => '.ttc',
-        COMPILE_DIR => ($dir || abs_path(File::Spec->tmpdir)),
-        UNICODE     => 1,
-        ENCODING    => 'utf-8',
-        CACHE_SIZE  => 128,
-        RELATIVE    => 1,
+        INCLUDE_PATH => \@renderer_paths,
+        COMPILE_EXT  => '.ttc',
+        COMPILE_DIR  => ($dir || abs_path(File::Spec->tmpdir)),
+        UNICODE      => 1,
+        ENCODING     => 'utf-8',
+        CACHE_SIZE   => 128,
+        RELATIVE     => 1,
         %{$args{template_options} || {}},
     );
 
