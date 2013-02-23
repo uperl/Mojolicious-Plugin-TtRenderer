@@ -21,11 +21,14 @@ $t->get_ok('/')
     ->status_is(500)
     ->content_like(qr{foo});
 
+$t->app->log->on(message => sub {
+  my($log, $level, @lines) = @_;
+  diag @lines if $level eq 'error';
+});
+
 $t->get_ok('/bar')
     ->status_is(200)
-    ->content_like(qr{bar});
-
-#note $t->tx->res->to_string;
+    ->content_like(qr{sometimes, the bar,});
 
 __DATA__
 

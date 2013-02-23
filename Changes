@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Additional testing diagnostics
 
 1.40    February 20, 2013
         - Added diagnostic for IO loop implementation in testing
