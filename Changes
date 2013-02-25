@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - fix for test on solaris
 
 1.41    February 23, 2013
         - Additional testing diagnostics

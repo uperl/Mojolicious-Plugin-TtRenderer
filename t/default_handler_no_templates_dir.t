@@ -6,7 +6,7 @@ use Test::More tests => 6;
 use Test::Mojo;
 
 use Mojolicious::Lite;
-plugin 'tt_renderer';
+plugin 'tt_renderer' => { template_options => { COMPILE_DIR  => tempdir( CLEANUP => 1 ) } };
 app->renderer->default_handler('tt');
 
 get '/' => sub {
