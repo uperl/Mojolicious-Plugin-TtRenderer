@@ -47,18 +47,18 @@ sub _init {
     my %config = (
         INCLUDE_PATH => \@renderer_paths,
         COMPILE_EXT  => '.ttc',
-        # TODO maybe this should be File::Spec->catdir(File::Spec->tmpdir, $<)
-        COMPILE_DIR  => ($dir || do {
-          my $dir = File::Spec->catdir(File::Spec->tmpdir, "ttr$<");
-          mkdir $dir;
-          $dir;
-        }),
         UNICODE      => 1,
         ENCODING     => 'utf-8',
         CACHE_SIZE   => 128,
         RELATIVE     => 1,
         %{$args{template_options} || {}},
     );
+
+    $config{COMPILE_DIR} //= $dir || do {
+      my $tmpdir = File::Spec->catdir(File::Spec->tmpdir, "ttr$<");
+      mkdir $tmpdir unless -d $tmpdir;
+      $tmpdir;
+    };
 
     $config{LOAD_TEMPLATES} =
       [Mojolicious::Plugin::TtRenderer::Provider->new(%config, renderer => $app->renderer)]
