@@ -2,6 +2,9 @@ Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
 
+1.42_02 February 26, 2013
+        - only create COMPILE_DIR based on UID if the user doesn't specify COMPILE_DIR
+
 1.42_01 February 24, 2013
         - set COMPILE_DIR based on UID so that multiple users can use TtRenderer with default config
 
