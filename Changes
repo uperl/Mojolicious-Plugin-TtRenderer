@@ -2,6 +2,9 @@ Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
 
+1.42_03 March 22, 2013
+        - Allow custom relative paths for cache_dir (GH#35, Jason Crowther)
+
 1.42_02 February 26, 2013
         - only create COMPILE_DIR based on UID if the user doesn't specify COMPILE_DIR
 
