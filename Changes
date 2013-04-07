@@ -2,6 +2,9 @@ Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
 
+1.42_04 April 6, 2013
+        - Updated meta for new github repo location
+
 1.42_03 March 22, 2013
         - Allow custom relative paths for cache_dir (GH#35, Jason Crowther)
 
