@@ -177,8 +177,7 @@ sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
 
 sub _template_modified {
     my($self, $template) = @_;
-    return $self->SUPER::_template_modified($template) if -r $template;
-    return $template =~ /^templates(?:\/|\\)/;
+    $self->SUPER::_template_modified($template) || $template =~ /^templates(?:\/|\\)/;
 }
 
 sub _template_content {
