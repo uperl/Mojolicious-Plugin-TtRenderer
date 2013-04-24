@@ -81,11 +81,15 @@ sub _render {
     $t = 'inline' if defined $inline;
     return unless $t;
 
-
     my $helper = Mojolicious::Plugin::TtRenderer::Helper->new(ctx => $c);
 
     # Purge previous result
     $$output = '';
+
+    # fixes for t/lite_app_with_default_layouts.t
+    unless ($c->stash->{layout}) {
+        $c->stash->{content} ||= $c->stash->{'mojo.content'}->{content};
+    }
 
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     my $provider = $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0];
