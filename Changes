@@ -2,6 +2,9 @@ Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
 
+1.45    April 26, 2013
+        - correctly support app->default->{layout} (GH#37, Fayland Lam)
+
 1.44    April 13, 2013
         - promote development changes to production
 
