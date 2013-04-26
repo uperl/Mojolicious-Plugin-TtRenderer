@@ -189,11 +189,11 @@ sub _template_content {
     my ($path) = @_;
 
     my $options = delete $self->{options};
-    
+
     # Convert backslashes to forward slashes to make inline templates work on Windows
     $path =~ s/\\/\//g;
     my ($t) = ($path =~ m{templates\/(.*)$});
-    
+
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
     }
@@ -235,13 +235,13 @@ Add the handler:
 
  sub startup {
      ...
- 
+
      # Via mojolicious plugin
      $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
- 
+
      # Or manually
      use Mojolicious::Plugin::TtRenderer::Engine;
- 
+
      my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
          mojo => $self,
          template_options => {
@@ -309,9 +309,9 @@ templates. Will default to a temp-dir if not set.
 
 =head1 SEE ALSO
 
-L<Mojolicious::Plugin::TtRenderer::Engine>, 
-L<Mojolicious>, 
-L<Mojolicious::Guides>, 
+L<Mojolicious::Plugin::TtRenderer::Engine>,
+L<Mojolicious>,
+L<Mojolicious::Guides>,
 L<http://mojolicious.org>.
 
 =head1 AUTHOR
