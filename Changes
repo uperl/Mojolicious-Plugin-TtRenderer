@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.46    May 19, 2013
         - Mojolicious 4.0 compatability
 
 1.45    April 26, 2013
