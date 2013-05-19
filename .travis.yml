@@ -1,6 +1,7 @@
 language: perl
 install:
-  - cpanm Mojolicious Template
+  - cpanm -n Mojolicious
+  - cpanm -n Template
 script: HARNESS_IS_VERBOSE=1 prove -v -Ilib t
 perl:
   - "5.16"
