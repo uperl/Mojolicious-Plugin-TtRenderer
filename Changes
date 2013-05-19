@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Mojolicious 4.0 compatability
 
 1.45    April 26, 2013
         - correctly support app->default->{layout} (GH#37, Fayland Lam)
