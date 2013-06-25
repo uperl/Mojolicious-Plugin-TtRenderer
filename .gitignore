@@ -1,14 +1,2 @@
-blib*
-Makefile
-Makefile.old
-Build
-_build*
-pm_to_blib*
-*.tar.gz
-.lwpcookies
-Mojolicious-Plugin-TtRenderer-*
-MojoX-Renderer-TT-*
-cover_db
-*~
-*.bak
-.build
+/Mojolicious-Plugin-TtRenderer-*
+/.build
