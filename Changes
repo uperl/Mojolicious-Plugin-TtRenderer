@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Template-Toolkit 2.25 compatability
 
 1.46    May 19, 2013
         - Mojolicious 4.0 compatability
