@@ -6,7 +6,7 @@ Mojolicious::Plugin::TtRenderer - Template Renderer Plugin
 
 =head1 VERSION
 
-version 1.46
+version 1.47
 
 =head1 SYNOPSIS
 
