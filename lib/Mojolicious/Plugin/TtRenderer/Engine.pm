@@ -12,7 +12,7 @@ use Cwd qw/abs_path/;
 use Scalar::Util 'weaken';
 use POSIX ':errno_h';
 
-# ABSTRACT: Template Toolkit renderer for Mojo
+# ABSTRACT: Template Toolkit renderer for Mojolicious
 # VERSION
 
 __PACKAGE__->attr('tt');

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use v5.10;
 
-# ABSTRACT: Template Renderer Plugin
+# ABSTRACT: Template Renderer Plugin for Mojolicious
 # VERSION
 
 use base 'Mojolicious::Plugin';
