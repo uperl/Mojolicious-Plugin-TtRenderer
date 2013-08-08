@@ -252,7 +252,7 @@ Add the handler:
      $self->renderer->add_handler( tt => $tt );
  }
 
-Template parameter are taken from C< $c->stash >.
+Template parameter are taken from C<$c-E<gt>stash>.
 
 =head1 RENDERING
 

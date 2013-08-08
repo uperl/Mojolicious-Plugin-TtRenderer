@@ -128,7 +128,7 @@ is equivalent to
  plugin 'tt_renderer', { template_options { COMPILE_DIR => 'some/path' } };
 
 except in the first example relative paths are relative to the L<Mojolicious>
-app's home directory (C<$app->home>).
+app's home directory (C<$app-E<gt>home>).
 
 =head1 STASH
 
