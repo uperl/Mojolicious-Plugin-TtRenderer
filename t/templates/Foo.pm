@@ -1,5 +1,7 @@
 package
-  Foo; 
+  Foo;
+use strict;
+use warnings;
 1;
 __DATA__ 
 

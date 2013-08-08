@@ -29,6 +29,14 @@ __END__
 
 =encoding utf-8
 
+=begin stopwords
+
+Bjørn
+Szász
+Árpád
+
+=cut 
+
 =head1 SYNOPSIS
 
 L<Mojolicious::Lite>:
@@ -110,7 +118,7 @@ C<utf-87>
 
 C<128>
 
-=item RELATIZE
+=item RELATIVE
 
 C<1> (true)
 

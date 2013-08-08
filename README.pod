@@ -8,6 +8,15 @@ Mojolicious::Plugin::TtRenderer - Template Renderer Plugin for Mojolicious
 
 version 1.49
 
+=encoding utf-8
+
+=begin stopwords
+
+Bjørn
+Szász
+Árpád
+
+
 =head1 SYNOPSIS
 
 L<Mojolicious::Lite>:
@@ -17,15 +26,12 @@ L<Mojolicious::Lite>:
 L<Mojolicious>
 
  $self->plugin('tt_renderer');
-
 =head1 DESCRIPTION
 
 This plugin is a simple Template Toolkit renderer for L<Mojolicious>. 
 Its defaults are usually reasonable, although for finer grain detail in 
 configuration you may want to use 
 L<Mojolicious::Plugin::TtRenderer::Engine> directly.
-
-=encoding utf-8
 
 =head1 OPTIONS
 
@@ -66,7 +72,6 @@ Here is the same example using the full L<Mojolicious> app form:
  }
 
 These options will be used if you do not override them:
-
 =over 4
 
 =item INCLUDE_PATH
@@ -91,7 +96,7 @@ C<utf-87>
 
 C<128>
 
-=item RELATIZE
+=item RELATIVE
 
 C<1> (true)
 
@@ -110,7 +115,6 @@ is equivalent to
 
 except in the first example relative paths are relative to the L<Mojolicious>
 app's home directory (C<$app-E<gt>home>).
-
 =head1 STASH
 
 =head2 h
@@ -118,13 +122,11 @@ app's home directory (C<$app-E<gt>home>).
 Helpers are available via the C<h> entry in the stash.
 
  <a href="[% h.url_for('index') %]">go back to index</a>
-
 =head2 c
 
 The current controller instance can be accessed as C<c>.
 
  I see you are requesting a document from [% c.req.headers.host %].
-
 =head1 EXAMPLES
 
 L<Mojolicious::Lite> example:
@@ -189,13 +191,14 @@ L<Mojolicious> example:
 These are also included with the C<Mojolicious::Plugin::TtRenderer>
 distribution, including the support files required for the full 
 L<Mojolicious> app example.
-
 =head1 SEE ALSO
 
 L<Mojolicious::Plugin::TtRenderer::Engine>, 
 L<Mojolicious>, 
 L<Mojolicious::Guides>, 
 L<http://mojolicious.org>.
+
+=end stopwords
 
 =head1 AUTHOR
 
