@@ -1,0 +1,8 @@
+Included in this directory are two examples of how to use the Template Toolkit
+Renderer.
+
+myapp.pl - Mojolicious::Lite example
+myapp/   - full Mojolicious application example
+
+They were created as minor modifications of the applications generated
+using the 'mojo generate' command.

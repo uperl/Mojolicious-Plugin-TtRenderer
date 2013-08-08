@@ -14,7 +14,6 @@ L<Mojolicious::Lite> example:
 
  use Mojolicious::Lite;
  
- # Documentation browser under "/perldoc"
  plugin 'tt_renderer';
  
  get '/' => sub {
@@ -29,7 +28,7 @@ L<Mojolicious::Lite> example:
  @@ index.html.tt
  [% 
     WRAPPER 'layouts/default.html.tt' 
-    title = 'default'
+    title = 'Welcome'
  %]
  <p>Welcome to the Mojolicious real-time web framework!</p>
  <p>Welcome to the TtRenderer plugin!</p>
@@ -41,6 +40,40 @@ L<Mojolicious::Lite> example:
    <head><title>[% title %]</title></head>
    <body>[% content %]</body>
  </html>
+
+L<Mojolicious> example:
+
+ package MyApp;
+ use Mojo::Base 'Mojolicious';
+ 
+ # This method will run once at server start
+ sub startup {
+   my $self = shift;
+ 
+   $self->plugin('tt_renderer');
+ 
+   # Router
+   my $r = $self->routes;
+ 
+   # Normal route to controller
+   $r->get('/')->to('example#welcome');
+ }
+ 
+ 1;
+
+ package MyApp::Example;
+ use Mojo::Base 'Mojolicious::Controller';
+ 
+ # This action will render a template
+ sub welcome {
+   my $self = shift;
+ 
+   # Render template "example/welcome.html.ep" with message
+   $self->render(
+     message => 'Welcome to the Mojolicious real-time web framework!');
+ }
+ 
+ 1;
 
 =head1 DESCRIPTION
 

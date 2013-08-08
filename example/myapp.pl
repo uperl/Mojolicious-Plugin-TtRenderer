@@ -1,6 +1,5 @@
 use Mojolicious::Lite;
 
-# Documentation browser under "/perldoc"
 plugin 'tt_renderer';
 
 get '/' => sub {
@@ -15,7 +14,7 @@ __DATA__
 @@ index.html.tt
 [% 
    WRAPPER 'layouts/default.html.tt' 
-   title = 'default'
+   title = 'Welcome'
 %]
 <p>Welcome to the Mojolicious real-time web framework!</p>
 <p>Welcome to the TtRenderer plugin!</p>

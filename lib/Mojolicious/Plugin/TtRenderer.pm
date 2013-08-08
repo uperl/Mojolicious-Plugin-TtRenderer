@@ -35,6 +35,12 @@ L<Mojolicious::Lite> example:
 
 # EXAMPLE: example/myapp.pl
 
+L<Mojolicious> example:
+
+# EXAMPLE: example/myapp/lib/MyApp.pm
+
+# EXAMPLE: example/myapp/lib/MyApp/Example.pm
+
 =head1 DESCRIPTION
 
 This plugin is a simple Template Toolkit renderer for L<Mojolicious>. 
