@@ -35,7 +35,7 @@ Bjørn
 Szász
 Árpád
 
-=cut 
+=end stopwords
 
 =head1 SYNOPSIS
 
