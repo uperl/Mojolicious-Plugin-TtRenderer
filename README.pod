@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Mojolicious::Plugin::TtRenderer - Template Renderer Plugin
+Mojolicious::Plugin::TtRenderer - Template Renderer Plugin for Mojolicious
 
 =head1 VERSION
 
@@ -10,20 +10,130 @@ version 1.47
 
 =head1 SYNOPSIS
 
- # Mojolicious
- $self->plugin('tt_renderer');
- $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
+L<Mojolicious::Lite> example:
 
- # Mojolicious::Lite
+ use Mojolicious::Lite;
+ 
+ # Documentation browser under "/perldoc"
  plugin 'tt_renderer';
- plugin tt_renderer => {template_options => {FILTERS => [ ... ]}};
+ 
+ get '/' => sub {
+   my $self = shift;
+   $self->render('index');
+ };
+ 
+ app->start;
+ 
+ __DATA__
+ 
+ @@ index.html.tt
+ [% 
+    WRAPPER 'layouts/default.html.tt' 
+    title = 'default'
+ %]
+ <p>Welcome to the Mojolicious real-time web framework!</p>
+ <p>Welcome to the TtRenderer plugin!</p>
+ [% END %]
+ 
+ @@ layouts/default.html.tt
+ <!DOCTYPE html>
+ <html>
+   <head><title>[% title %]</title></head>
+   <body>[% content %]</body>
+ </html>
 
 =head1 DESCRIPTION
 
-L<Mojolicious::Plugin::TtRenderer> is a simple loader for 
-L<Mojolicious::Plugin::TtRenderer::Engine>.
+This plugin is a simple Template Toolkit renderer for L<Mojolicious>. 
+Its defaults are usually reasonable, although for finer grain detail in 
+configuration you may want to use 
+L<Mojolicious::Plugin::TtRenderer::Engine> directly.
 
 =encoding utf-8
+
+=head1 OPTIONS
+
+These are the options that can be passed in as arguments to this plugin.
+
+=head2 template_options
+
+Configuration hash passed into L<Template>'s constructor, see 
+L<Template Toolkit's configuration summary|Template#CONFIGURATION-SUMMARY>
+for details.  Here is an example using the L<Mojolicious::Lite> form:
+
+ plugin 'tt_renderer' => {
+   template_options => {
+     PRE_CHOMP => 1,
+     POST_CHOMP => 1,
+     TRIM => 1,
+   },
+ };
+
+Here is the same example using the full L<Mojolicious> app form:
+
+ package MyApp;
+ 
+ use Mojo::Base qw( Mojolicious );
+ 
+ sub startup {
+   my($self) = @_;
+   
+   $self->plugin('tt_renderer' => {
+     template_options => {
+       PRE_CHOMP => 1,
+       POST_CHOMP => 1,
+       TRIM => 1,
+     },
+   }
+   
+   ...
+ }
+
+These options will be used if you do not override them:
+
+=over 4
+
+=item INCLUDE_PATH
+
+Generated based on your application's renderer's configuration.  It
+will include all renderer paths, in addition to search files located
+in the C<__DATA__> section by the usual logic used by L<Mojolicious>.
+
+=item COMPILE_EXT
+
+C<.ttc>
+
+=item UNICODE
+
+C<1> (true)
+
+=item ENCODING
+
+C<utf-87>
+
+=item CACHE_SIZE
+
+C<128>
+
+=item RELATIZE
+
+C<1> (true)
+
+=back
+
+=head2 cache_dir
+
+Specifies the directory in which compiled template files are
+written.  This:
+
+ plugin 'tt_renderer', { cache_dir => 'some/path' };
+
+is equivalent to
+
+ plugin 'tt_renderer', { template_options { COMPILE_DIR => 'some/path' } };
+
+except in the first example relative paths are relative to the L<Mojolicious>
+app's home directory (C<$app->home>).
 
 =head1 METHODS
 
