@@ -5,9 +5,9 @@ use Mojo::Base 'Mojolicious::Controller';
 sub welcome {
   my $self = shift;
 
-  # Render template "example/welcome.html.ep" with message
+  # Render template "example/welcome.html.tt" with message
   $self->render(
-    message => 'Welcome to the Mojolicious real-time web framework!');
+    message => 'Looks like your TtRenderer is working!');
 }
 
 1;
