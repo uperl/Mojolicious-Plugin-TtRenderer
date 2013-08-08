@@ -31,15 +31,13 @@ __END__
 
 =head1 SYNOPSIS
 
-L<Mojolicious::Lite> example:
+L<Mojolicious::Lite>:
 
-# EXAMPLE: example/myapp.pl
+ plugin 'tt_renderer';
 
-L<Mojolicious> example:
+L<Mojolicious>
 
-# EXAMPLE: example/myapp/lib/MyApp.pm
-
-# EXAMPLE: example/myapp/lib/MyApp/Example.pm
+ $self->plugin('tt_renderer');
 
 =head1 DESCRIPTION
 
@@ -132,22 +130,35 @@ is equivalent to
 except in the first example relative paths are relative to the L<Mojolicious>
 app's home directory (C<$app->home>).
 
-=head1 METHODS
+=head1 STASH
 
-L<Mojolicious::Plugin::TtRenderer> inherits all methods from
-L<Mojolicious::Plugin> and implements the following new ones.
+=head2 h
 
-=head2 C<register>
+Helpers are available via the C<h> entry in the stash.
 
- $plugin->register;
+ <a href="[% h.url_for('index') %]">go back to index</a>
 
-Register renderer in L<Mojolicious> application.
-
-=head1 EXTRA STASH VARIABLES
+=head2 c
 
 The current controller instance can be accessed as C<c>.
 
- [% c.req.headers.host %]
+ I see you are requesting a document from [% c.req.headers.host %].
+
+=head1 EXAMPLES
+
+L<Mojolicious::Lite> example:
+
+# EXAMPLE: example/myapp.pl
+
+L<Mojolicious> example:
+
+# EXAMPLE: example/myapp/lib/MyApp.pm
+
+# EXAMPLE: example/myapp/lib/MyApp/Example.pm
+
+These are also included with the C<Mojolicious::Plugin::TtRenderer>
+distribution, including the support files required for the full 
+L<Mojolicious> app example.
 
 =head1 SEE ALSO
 

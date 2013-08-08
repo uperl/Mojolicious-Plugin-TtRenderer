@@ -10,64 +10,13 @@ version 1.47
 
 =head1 SYNOPSIS
 
-L<Mojolicious::Lite> example:
+L<Mojolicious::Lite>:
 
- use Mojolicious::Lite;
- 
  plugin 'tt_renderer';
- 
- get '/' => sub {
-   my $self = shift;
-   $self->render('index');
- };
- 
- app->start;
- 
- __DATA__
- 
- @@ index.html.tt
- [% 
-    WRAPPER 'layouts/default.html.tt' 
-    title = 'Welcome'
- %]
- <p>Welcome to the Mojolicious real-time web framework!</p>
- <p>Welcome to the TtRenderer plugin!</p>
- [% END %]
- 
- @@ layouts/default.html.tt
- <!DOCTYPE html>
- <html>
-   <head><title>[% title %]</title></head>
-   <body>[% content %]</body>
- </html>
 
-L<Mojolicious> example:
+L<Mojolicious>
 
- package MyApp;
- use Mojo::Base 'Mojolicious';
- 
- sub startup {
-   my $self = shift;
-   $self->plugin('tt_renderer');
-   my $r = $self->routes;
-   $r->get('/')->to('example#welcome');
- }
- 
- 1;
-
- package MyApp::Example;
- use Mojo::Base 'Mojolicious::Controller';
- 
- # This action will render a template
- sub welcome {
-   my $self = shift;
- 
-   # Render template "example/welcome.html.tt" with message
-   $self->render(
-     message => 'Looks like your TtRenderer is working!');
- }
- 
- 1;
+ $self->plugin('tt_renderer');
 
 =head1 DESCRIPTION
 
@@ -162,22 +111,84 @@ is equivalent to
 except in the first example relative paths are relative to the L<Mojolicious>
 app's home directory (C<$app->home>).
 
-=head1 METHODS
+=head1 STASH
 
-L<Mojolicious::Plugin::TtRenderer> inherits all methods from
-L<Mojolicious::Plugin> and implements the following new ones.
+=head2 h
 
-=head2 C<register>
+Helpers are available via the C<h> entry in the stash.
 
- $plugin->register;
+ <a href="[% h.url_for('index') %]">go back to index</a>
 
-Register renderer in L<Mojolicious> application.
-
-=head1 EXTRA STASH VARIABLES
+=head2 c
 
 The current controller instance can be accessed as C<c>.
 
- [% c.req.headers.host %]
+ I see you are requesting a document from [% c.req.headers.host %].
+
+=head1 EXAMPLES
+
+L<Mojolicious::Lite> example:
+
+ use Mojolicious::Lite;
+ 
+ plugin 'tt_renderer';
+ 
+ get '/' => sub {
+   my $self = shift;
+   $self->render('index');
+ };
+ 
+ app->start;
+ 
+ __DATA__
+ 
+ @@ index.html.tt
+ [% 
+    WRAPPER 'layouts/default.html.tt' 
+    title = 'Welcome'
+ %]
+ <p>Welcome to the Mojolicious real-time web framework!</p>
+ <p>Welcome to the TtRenderer plugin!</p>
+ [% END %]
+ 
+ @@ layouts/default.html.tt
+ <!DOCTYPE html>
+ <html>
+   <head><title>[% title %]</title></head>
+   <body>[% content %]</body>
+ </html>
+
+L<Mojolicious> example:
+
+ package MyApp;
+ use Mojo::Base 'Mojolicious';
+ 
+ sub startup {
+   my $self = shift;
+   $self->plugin('tt_renderer');
+   my $r = $self->routes;
+   $r->get('/')->to('example#welcome');
+ }
+ 
+ 1;
+
+ package MyApp::Example;
+ use Mojo::Base 'Mojolicious::Controller';
+ 
+ # This action will render a template
+ sub welcome {
+   my $self = shift;
+ 
+   # Render template "example/welcome.html.tt" with message
+   $self->render(
+     message => 'Looks like your TtRenderer is working!');
+ }
+ 
+ 1;
+
+These are also included with the C<Mojolicious::Plugin::TtRenderer>
+distribution, including the support files required for the full 
+L<Mojolicious> app example.
 
 =head1 SEE ALSO
 
