@@ -2,110 +2,110 @@ Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
 
-1.49      2013-08-08 09:18:54 America/New_York
+1.49    2013-08-08 09:18:54 America/New_York
         - documentation
 
-1.48      2013-08-08 09:13:19 America/New_York
+1.48    2013-08-08 09:13:19 America/New_York
         - documentation
 
-1.47      2013-07-26 06:07:35 America/New_York
+1.47    2013-07-26 06:07:35 America/New_York
         - Template-Toolkit 2.25 compatability
 
-1.46    May 19, 2013
+1.46    2013-05-19
         - Mojolicious 4.0 compatability
 
-1.45    April 26, 2013
+1.45    2013-04-26
         - correctly support app->default->{layout} (GH#37, Fayland Lam)
 
-1.44    April 13, 2013
+1.44    2013-04-13
         - promote development changes to production
 
-1.43_01 April 11, 2013
+1.43_01 2013-04-11
         - _template_modified returns value from super class instead of 1 if true (GH#36, Fayland Lam)
 
-1.43    April 8, 2013
+1.43    2013-04-08
         - promote development changes
 
-1.42_04 April 6, 2013
+1.42_04 2013-04-06
         - Updated meta for new github repo location
 
-1.42_03 March 22, 2013
+1.42_03 2013-03-22
         - Allow custom relative paths for cache_dir (GH#35, Jason Crowther)
 
-1.42_02 February 26, 2013
+1.42_02 2013-02-26
         - only create COMPILE_DIR based on UID if the user doesn't specify COMPILE_DIR
 
-1.42_01 February 24, 2013
+1.42_01 2013-02-24
         - set COMPILE_DIR based on UID so that multiple users can use TtRenderer with default config
 
-1.42    February 24, 2013
+1.42    2013-02-24
         - fix for test on solaris
 
-1.41    February 23, 2013
+1.41    2013-02-23
         - Additional testing diagnostics
 
-1.40    February 20, 2013
+1.40    2013-02-20
         - Added diagnostic for IO loop implementation in testing
 
-1.39    January 28, 2013
+1.39    2013-01-28
         - Documentation updates.
 
-1.38    January 27, 2013
+1.38    2013-01-27
         - fixed but where DATA templates were not being rendered with empty renderer path
 
-1.37    January 12, 2013
+1.37    2013-01-12
         - fix default_template2.t to use temp directory for COMPILE_DIR
 
-1.36    January 9, 2013
+1.36    2013-01-09
         - Use $provider->fetch to find templates (GH#34)
 
-1.35    December 30, 2012
+1.35    2012-12-30
         - Documentation fix
 
-1.34    December 29, 2012
+1.34    2012-12-29
         - Include META.json in distribution.
 
-1.33    December 27, 2012
+1.33    2012-12-27
         - Fix hang in t/deep_recursion.t on *BSD
 
-1.32    December 27, 2012
+1.32    2012-12-27
         - silenced a few annoying warnings during test
         - use temp directory for COMPILE_DIR in tests to avoid failures if the
           default compile directory already exists and is owned by someone else.
 
-1.31    December 26, 2012
+1.31    2012-12-26
         - Set locale "C" in tests that rely on it
 
-1.30    December 22, 2012
+1.30    2012-12-22
         - Don't rely on English locale in the test t/tt_plugin_lite_app.t
 
-1.29    December 18, 2012
+1.29    2012-12-18
         - support multiple renderer paths
 
-1.28    October 11, 2012
+1.28    2012-10-11
         - specify minimum perl version
 
-1.27    October 2, 2012
+1.27    2012-10-02
         - documentation fixes and updates.
 
-1.26    August 31, 2012
+1.26    2012-08-31
         - Windows compatability with Cwd::abs_path
 
-1.25    August 25, 2012
+1.25    2012-08-25
         - Return 0 on not found, die on error (GH#30)
 
-1.24    August 23, 2012
+1.24    2012-08-23
         - Compatibility with Mojolicious 3.33+
 
-1.23    August 23, 2012
+1.23    2012-08-23
         - Use die instead of render_exception (GH#29)
 
-1.22    August 21, 2012
+1.22    2012-08-21
         - Compatibility with Mojolicious 3.05+ (GH#24)
         - Avoid deep recursion when exception template dies (GH#25,GH26)
         - Fixed test failures (GH#27,GH#28)
 
-1.21    June 5, 2012
+1.21    2012-06-05
         - Fixed double TT rendering on error (Matthias Bethke (GH#21))
         - Cache templates in tmpdir by default (Marcus Ramberg)
         - Require Mojolicious 2.51 to avoid memory leaks (GH#19)
@@ -113,28 +113,28 @@ Revision history for Mojolicious::Plugin::TtRenderer
         - Fix memory leaks, add tests for them (GH#18, Magnus Holm)
         - Use app->renderer->paths to find template directories (GH#17)
 
-1.20    August 1, 2011
+1.20    2011-08-01
         - Drop use of MojoX namespace for Mojolicious::Plugin::TtRenderer::
           (GH#12, Cosimo Streppone)
 
-1.13    June 7, 2011
+1.13    2011-06-07
         - Compatibility with Mojolicious 1.3+
 
-1.12    February 28, 2011
+1.12    2011-02-28
         - Inline wrappers and includes now work on Windows
           (GH#13, Christiaan Kras)
 
-1.11    February 6, 2011
+1.11    2011-02-06
         - Change to use relative paths (Marcus Ramberg)
         - Add exception template for tests
 
-1.10    February 5, 2011
+1.10    2011-02-05
         - Support Mojolicious 'layout'/'extends' (Maxim Vuets, Marcus
           Ramberg)
         - Fix Strawberry Perl tests (RT#65282, Christiaan Kras, Ask)
         - Update bugtracker URL in META.yml
 
-1.0     January 22, 2011
+1.0     2011-01-22
         - Require (and be compatible with) Mojolicious 1.0+
         - Added inline template support (Viacheslav Tykhanovskyi & Ask)
         - Fix inline rendering and test failures (Marcus Ramberg)
@@ -143,31 +143,31 @@ Revision history for Mojolicious::Plugin::TtRenderer
         - Fix unicode test (Marcus & Spleenjack)
         - Replaced deprecated Mojo dependence with Mojolicious (spleenjack)
 
-0.40    August 2, 2010
+0.40    2010-08-02
         - Updated for newer Mojo (Viacheslav Tykhanovskyi)
         - Added helpers (Viacheslav Tykhanovskyi)
         - Documentation updates
 
-0.31    September 11, 2009
+0.31    2009-09-11
         - Remove deprecated 'new' method
         - Update MANIFEST (oops, thanks Sebastian)
 
-0.30    September 9, 2009
+0.30    2009-09-09
         - Revert the change of template_path stash key
         - Reflect recent changes in mojo project (v0.991251) (Sebastian Knapp)
         - One test with Mojolicious added (Sebastian Knapp)
 
-0.21    July 29, 2009
+0.21    2009-07-29
         - Update stash key from 'template_path' to 'template' to
           match mojo change (Sebastian Knapp)
 
-0.20    December 9, 2008
+0.20    2008-12-09
         - Updates to work with Mojo 0.9
         - Add default INCLUDE_PATH
         - Made default compile dir not Unix specific (Viacheslav
           Tykhanovskyi)
 
-0.10    November 12, 2008
+0.10    2008-11-12
         - Update to work with named parameters in new version of Mojo
         - Instead of "tx" pass the context in the "c" variable
         - Rename "new" to "build"
@@ -175,10 +175,9 @@ Revision history for Mojolicious::Plugin::TtRenderer
         - Update to work with new error handling in Mojo
           (Viacheslav Tykhanovskyi)
 
-0.02    November 10, 2008
+0.02    2008-11-10
         - Add template_options parameter
         - Fix Template dependency
 
-0.01    November 9, 2008
+0.01    2008-11-09
         - First version, released on an unsuspecting world.
-
