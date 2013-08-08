@@ -16,7 +16,6 @@ Bjørn
 Szász
 Árpád
 
-
 =head1 SYNOPSIS
 
 L<Mojolicious::Lite>:
@@ -233,6 +232,8 @@ Jason Crowther
 spleenjack
 
 Árpád Szász
+
+Сергей Романов
 
 =head1 COPYRIGHT AND LICENSE
 
