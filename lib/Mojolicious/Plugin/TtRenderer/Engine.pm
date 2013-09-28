@@ -254,6 +254,16 @@ Add the handler:
 
 Template parameter are taken from C<$c-E<gt>stash>.
 
+=head1 DESCRIPTION
+
+See L<Mojolicious::Plugin::TtRenderer> for details on the plugin interface to this module.
+
+This module provides an engine for the rendering of L<Template Toolkit|Template> templates
+within a Mojolicious context.  Templates may be, stored on the local file system, provided
+inline by the controller or included in the C<__DATA__> section.  Where possible this modules
+attempts to provide a TT analogue interface to the L<Perlish templates|Mojo::Template> which 
+come with Mojolicious.
+
 =head1 RENDERING
 
 The template file for C<"example/welcome"> would be C<"templates/welcome.html.tt">.
@@ -306,7 +316,7 @@ templates. Will default to a temp-dir if not set.
 
 =head1 SEE ALSO
 
-L<Mojolicious::Plugin::TtRenderer::Engine>, 
+L<Mojolicious::Plugin::TtRenderer>, 
 L<Mojolicious>, 
 L<Mojolicious::Guides>, 
 L<http://mojolicious.org>.

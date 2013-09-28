@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - extended diagnostics
+        - documentation tweaks
 
 1.50      2013-08-08T16:51:21-0400
         - update Changes to follow spec (GH#39, Сергей Романов)
