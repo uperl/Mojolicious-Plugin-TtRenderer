@@ -1,11 +1,13 @@
 use strict;
 use warnings;
-use Test::More tests => 1;
+use Test::More;
 use Mojo::IOLoop;
+
+our $format;
 
 my $loop = eval { Mojo::IOLoop->singleton };
 diag $@ if $@;
-ok $loop;
-diag ref eval { $loop->reactor };
+diag sprintf $format, 'mojo io loop', ref eval { $loop->reactor };
 diag $@ if $@;
 
+1;
