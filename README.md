@@ -43,11 +43,9 @@ Here is the same example using the full [Mojolicious](http://search.cpan.org/per
     
     use Mojo::Base qw( Mojolicious );
     
-
     sub startup {
       my($self) = @_;
       
-
     $self->plugin('tt_renderer' => {
       template_options => {
         PRE_CHOMP => 1,
@@ -123,7 +121,6 @@ The current controller instance can be accessed as `c`.
     
     plugin 'tt_renderer';
     
-
     get '/' => sub {
       my $self = shift;
       $self->render('index');
@@ -131,7 +128,6 @@ The current controller instance can be accessed as `c`.
     
     app->start;
     
-
     __DATA__
     
     @@ index.html.tt
