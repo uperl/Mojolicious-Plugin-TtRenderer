@@ -1,12 +1,22 @@
 use strict;
 use warnings;
 use Test::More tests => 1;
-BEGIN { eval q{ use EV } }
-eval q{ 
-  use FindBin ();
-  use File::Spec;
-  1;
-} || die $@;
+BEGIN {
+  my @modules;
+  eval q{
+    require FindBin;
+    require File::Spec;
+    1;
+  } || die $@;
+  do {
+    my $fh;
+    open($fh, '<', File::Spec->catfile($FindBin::Bin, '00_diag.pre.txt'));
+    @modules = <$fh>;
+    close $fh;
+    chomp @modules;
+  };
+  eval qq{ require $_ } for @modules;
+};
 
 pass 'okay';
 
@@ -34,7 +44,7 @@ require(File::Spec->catfile($FindBin::Bin, '00_diag.pl'))
 
 foreach my $module (@modules)
 {
-  if(eval qq{ use $module; 1 })
+  if(eval qq{ require $module; 1 })
   {
     my $ver = eval qq{ \$$module\::VERSION };
     $ver = 'undef' unless defined $ver;
