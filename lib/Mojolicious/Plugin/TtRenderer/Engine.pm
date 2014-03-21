@@ -226,6 +226,14 @@ __END__
 
 =encoding utf-8
 
+=begin stopwords
+
+Bjørn
+Szász
+Árpád
+
+=end stopwords
+
 =head1 SYNOPSIS
 
 Add the handler:

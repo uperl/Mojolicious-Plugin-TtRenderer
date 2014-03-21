@@ -25,6 +25,8 @@ pod_spelling_system:
     - renderer's
     - Toolkit's
     - Fayland
+    - TT
+    - uwisser
 
 pod_coverage:
   # format is "Class#method" or "Class", regex allowed
