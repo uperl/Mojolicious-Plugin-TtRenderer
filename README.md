@@ -4,20 +4,20 @@ Template Renderer Plugin for Mojolicious
 
 # SYNOPSIS
 
-[Mojolicious::Lite](http://search.cpan.org/perldoc?Mojolicious::Lite):
+[Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite):
 
     plugin 'tt_renderer';
 
-[Mojolicious](http://search.cpan.org/perldoc?Mojolicious)
+[Mojolicious](https://metacpan.org/pod/Mojolicious)
 
     $self->plugin('tt_renderer');
 
 # DESCRIPTION
 
-This plugin is a simple Template Toolkit renderer for [Mojolicious](http://search.cpan.org/perldoc?Mojolicious). 
+This plugin is a simple Template Toolkit renderer for [Mojolicious](https://metacpan.org/pod/Mojolicious). 
 Its defaults are usually reasonable, although for finer grain detail in 
 configuration you may want to use 
-[Mojolicious::Plugin::TtRenderer::Engine](http://search.cpan.org/perldoc?Mojolicious::Plugin::TtRenderer::Engine) directly.
+[Mojolicious::Plugin::TtRenderer::Engine](https://metacpan.org/pod/Mojolicious::Plugin::TtRenderer::Engine) directly.
 
 # OPTIONS
 
@@ -25,9 +25,9 @@ These are the options that can be passed in as arguments to this plugin.
 
 ## template\_options
 
-Configuration hash passed into [Template](http://search.cpan.org/perldoc?Template)'s constructor, see 
-[Template Toolkit's configuration summary](http://search.cpan.org/perldoc?Template\#CONFIGURATION-SUMMARY)
-for details.  Here is an example using the [Mojolicious::Lite](http://search.cpan.org/perldoc?Mojolicious::Lite) form:
+Configuration hash passed into [Template](https://metacpan.org/pod/Template)'s constructor, see 
+[Template Toolkit's configuration summary](https://metacpan.org/pod/Template#CONFIGURATION-SUMMARY)
+for details.  Here is an example using the [Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite) form:
 
     plugin 'tt_renderer' => {
       template_options => {
@@ -37,7 +37,7 @@ for details.  Here is an example using the [Mojolicious::Lite](http://search.cpa
       },
     };
 
-Here is the same example using the full [Mojolicious](http://search.cpan.org/perldoc?Mojolicious) app form:
+Here is the same example using the full [Mojolicious](https://metacpan.org/pod/Mojolicious) app form:
 
     package MyApp;
     
@@ -46,14 +46,14 @@ Here is the same example using the full [Mojolicious](http://search.cpan.org/per
     sub startup {
       my($self) = @_;
       
-    $self->plugin('tt_renderer' => {
-      template_options => {
-        PRE_CHOMP => 1,
-        POST_CHOMP => 1,
-        TRIM => 1,
-      },
-    }
-    
+      $self->plugin('tt_renderer' => {
+        template_options => {
+          PRE_CHOMP => 1,
+          POST_CHOMP => 1,
+          TRIM => 1,
+        },
+      }
+      
       ...
     }
 
@@ -63,7 +63,7 @@ These options will be used if you do not override them:
 
     Generated based on your application's renderer's configuration.  It
     will include all renderer paths, in addition to search files located
-    in the `__DATA__` section by the usual logic used by [Mojolicious](http://search.cpan.org/perldoc?Mojolicious).
+    in the `__DATA__` section by the usual logic used by [Mojolicious](https://metacpan.org/pod/Mojolicious).
 
 - COMPILE\_EXT
 
@@ -96,7 +96,7 @@ is equivalent to
 
     plugin 'tt_renderer', { template_options { COMPILE_DIR => 'some/path' } };
 
-except in the first example relative paths are relative to the [Mojolicious](http://search.cpan.org/perldoc?Mojolicious)
+except in the first example relative paths are relative to the [Mojolicious](https://metacpan.org/pod/Mojolicious)
 app's home directory (`$app->home`).
 
 # STASH
@@ -115,7 +115,7 @@ The current controller instance can be accessed as `c`.
 
 # EXAMPLES
 
-[Mojolicious::Lite](http://search.cpan.org/perldoc?Mojolicious::Lite) example:
+[Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite) example:
 
     use Mojolicious::Lite;
     
@@ -146,7 +146,7 @@ The current controller instance can be accessed as `c`.
       <body>[% content %]</body>
     </html>
 
-[Mojolicious](http://search.cpan.org/perldoc?Mojolicious) example:
+[Mojolicious](https://metacpan.org/pod/Mojolicious) example:
 
     package MyApp;
     use Mojo::Base 'Mojolicious';
@@ -176,13 +176,13 @@ The current controller instance can be accessed as `c`.
 
 These are also included with the `Mojolicious::Plugin::TtRenderer`
 distribution, including the support files required for the full 
-[Mojolicious](http://search.cpan.org/perldoc?Mojolicious) app example.
+[Mojolicious](https://metacpan.org/pod/Mojolicious) app example.
 
 # SEE ALSO
 
-[Mojolicious::Plugin::TtRenderer::Engine](http://search.cpan.org/perldoc?Mojolicious::Plugin::TtRenderer::Engine), 
-[Mojolicious](http://search.cpan.org/perldoc?Mojolicious), 
-[Mojolicious::Guides](http://search.cpan.org/perldoc?Mojolicious::Guides), 
+[Mojolicious::Plugin::TtRenderer::Engine](https://metacpan.org/pod/Mojolicious::Plugin::TtRenderer::Engine), 
+[Mojolicious](https://metacpan.org/pod/Mojolicious), 
+[Mojolicious::Guides](https://metacpan.org/pod/Mojolicious::Guides), 
 [http://mojolicious.org](http://mojolicious.org).
 
 # AUTHOR
@@ -221,9 +221,11 @@ spleenjack
 
 Сергей Романов
 
+uwisser
+
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Ask Bjørn Hansen.
+This software is copyright (c) 2014 by Ask Bjørn Hansen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

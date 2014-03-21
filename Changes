@@ -3,6 +3,7 @@ Revision history for Mojolicious::Plugin::TtRenderer
 {{$NEXT}}
         - extended diagnostics
         - documentation tweaks
+        - fix non-lite app example (GH#41, uwisser)
 
 1.50      2013-08-08T16:51:21-0400
         - update Changes to follow spec (GH#39, Сергей Романов)
