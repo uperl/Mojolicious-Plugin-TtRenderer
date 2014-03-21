@@ -1,2 +1,3 @@
 /Mojolicious-Plugin-TtRenderer-*
 /.build
+/example/myapp/log/development.log
