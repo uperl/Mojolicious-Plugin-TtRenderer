@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - updated repository name
 
 1.51      2014-03-21 14:59:39 -0400
         - extended diagnostics
