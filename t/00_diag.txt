@@ -10,7 +10,6 @@ Mojolicious::Lite
 POSIX
 Template
 Template::Provider
-Test::CPAN::Meta
 Test::Mojo
 Test::More
 lib
