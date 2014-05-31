@@ -1,16 +1,7 @@
 EV
-ExtUtils::MakeMaker
-File::Temp
-FindBin
-IO::Handle
-IPC::Open3
-Mojo::IOLoop
+Module::Build
 Mojolicious
-Mojolicious::Lite
 POSIX
 Template
 Template::Provider
-Test::Mojo
 Test::More
-lib
-utf8
