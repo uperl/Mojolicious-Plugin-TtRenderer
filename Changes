@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - Mojolicious 5.0 support
 
 1.52      2014-05-08 19:26:47 -0400
         - updated repository name

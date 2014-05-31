@@ -24,7 +24,7 @@ BEGIN { $ENV{MOJO_TMPDIR} ||= tempdir( CLEANUP => 1) }
 
 # Make sure sockets are working
 plan skip_all => 'working sockets required for this test!'
-  unless Mojo::IOLoop->new->generate_port;
+  unless Mojo::IOLoop::Server->new->generate_port;
 plan tests => 6;
 
 # Leela: OK, this has gotta stop. I'm going to remind Fry of his humanity the way only a woman can.
