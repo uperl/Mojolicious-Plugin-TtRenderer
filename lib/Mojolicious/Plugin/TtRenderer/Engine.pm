@@ -102,6 +102,7 @@ sub _render {
             $self->tt->process(\$inline, @params);
         }
         else {
+            $t =~ s{^/}{};
             my @ret = $provider->fetch($t);
 
             if (not defined $ret[1]) {
