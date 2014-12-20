@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+        - cpantesters: do not report on older perls
 
 1.53      2014-05-31 06:22:47 -0400
         - Mojolicious 5.0 support
