@@ -1,201 +1,202 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+  - Mojo 6.x compat  
 
 1.54      2014-12-20 10:17:47 -0500
-        - cpantesters: do not report on older perls
+  - cpantesters: do not report on older perls
 
 1.53      2014-05-31 06:22:47 -0400
-        - Mojolicious 5.0 support
+  - Mojolicious 5.0 support
 
 1.52      2014-05-08 19:26:47 -0400
-        - updated repository name
+  - updated repository name
 
 1.51      2014-03-21 14:59:39 -0400
-        - extended diagnostics
-        - documentation tweaks
-        - fix non-lite app example (GH#41, uwisser)
+  - extended diagnostics
+  - documentation tweaks
+  - fix non-lite app example (GH#41, uwisser)
 
 1.50      2013-08-08T16:51:21-0400
-        - update Changes to follow spec (GH#39, Сергей Романов)
-        - minor documentation fixes
+  - update Changes to follow spec (GH#39, Сергей Романов)
+  - minor documentation fixes
 
 1.49    2013-08-08T09:18:54-0400
-        - documentation
+  - documentation
 
 1.48    2013-08-08T09:13:19-0400
-        - documentation
+  - documentation
 
 1.47    2013-07-26T06:07:35-0400
-        - Template-Toolkit 2.25 compatability
+  - Template-Toolkit 2.25 compatability
 
 1.46    2013-05-19
-        - Mojolicious 4.0 compatability
+  - Mojolicious 4.0 compatability
 
 1.45    2013-04-26
-        - correctly support app->default->{layout} (GH#37, Fayland Lam)
+  - correctly support app->default->{layout} (GH#37, Fayland Lam)
 
 1.44    2013-04-13
-        - promote development changes to production
+  - promote development changes to production
 
 1.43_01 2013-04-11
-        - _template_modified returns value from super class instead of 1 if true (GH#36, Fayland Lam)
+  - _template_modified returns value from super class instead of 1 if true (GH#36, Fayland Lam)
 
 1.43    2013-04-08
-        - promote development changes
+  - promote development changes
 
 1.42_04 2013-04-06
-        - Updated meta for new github repo location
+  - Updated meta for new github repo location
 
 1.42_03 2013-03-22
-        - Allow custom relative paths for cache_dir (GH#35, Jason Crowther)
+  - Allow custom relative paths for cache_dir (GH#35, Jason Crowther)
 
 1.42_02 2013-02-26
-        - only create COMPILE_DIR based on UID if the user doesn't specify COMPILE_DIR
+  - only create COMPILE_DIR based on UID if the user doesn't specify COMPILE_DIR
 
 1.42_01 2013-02-24
-        - set COMPILE_DIR based on UID so that multiple users can use TtRenderer with default config
+  - set COMPILE_DIR based on UID so that multiple users can use TtRenderer with default config
 
 1.42    2013-02-24
-        - fix for test on solaris
+  - fix for test on solaris
 
 1.41    2013-02-23
-        - Additional testing diagnostics
+  - Additional testing diagnostics
 
 1.40    2013-02-20
-        - Added diagnostic for IO loop implementation in testing
+  - Added diagnostic for IO loop implementation in testing
 
 1.39    2013-01-28
-        - Documentation updates.
+  - Documentation updates.
 
 1.38    2013-01-27
-        - fixed but where DATA templates were not being rendered with empty renderer path
+  - fixed but where DATA templates were not being rendered with empty renderer path
 
 1.37    2013-01-12
-        - fix default_template2.t to use temp directory for COMPILE_DIR
+  - fix default_template2.t to use temp directory for COMPILE_DIR
 
 1.36    2013-01-09
-        - Use $provider->fetch to find templates (GH#34)
+  - Use $provider->fetch to find templates (GH#34)
 
 1.35    2012-12-30
-        - Documentation fix
+  - Documentation fix
 
 1.34    2012-12-29
-        - Include META.json in distribution.
+  - Include META.json in distribution.
 
 1.33    2012-12-27
-        - Fix hang in t/deep_recursion.t on *BSD
+  - Fix hang in t/deep_recursion.t on *BSD
 
 1.32    2012-12-27
-        - silenced a few annoying warnings during test
-        - use temp directory for COMPILE_DIR in tests to avoid failures if the
+  - silenced a few annoying warnings during test
+  - use temp directory for COMPILE_DIR in tests to avoid failures if the
           default compile directory already exists and is owned by someone else.
 
 1.31    2012-12-26
-        - Set locale "C" in tests that rely on it
+  - Set locale "C" in tests that rely on it
 
 1.30    2012-12-22
-        - Don't rely on English locale in the test t/tt_plugin_lite_app.t
+  - Don't rely on English locale in the test t/tt_plugin_lite_app.t
 
 1.29    2012-12-18
-        - support multiple renderer paths
+  - support multiple renderer paths
 
 1.28    2012-10-11
-        - specify minimum perl version
+  - specify minimum perl version
 
 1.27    2012-10-02
-        - documentation fixes and updates.
+  - documentation fixes and updates.
 
 1.26    2012-08-31
-        - Windows compatability with Cwd::abs_path
+  - Windows compatability with Cwd::abs_path
 
 1.25    2012-08-25
-        - Return 0 on not found, die on error (GH#30)
+  - Return 0 on not found, die on error (GH#30)
 
 1.24    2012-08-23
-        - Compatibility with Mojolicious 3.33+
+  - Compatibility with Mojolicious 3.33+
 
 1.23    2012-08-23
-        - Use die instead of render_exception (GH#29)
+  - Use die instead of render_exception (GH#29)
 
 1.22    2012-08-21
-        - Compatibility with Mojolicious 3.05+ (GH#24)
-        - Avoid deep recursion when exception template dies (GH#25,GH26)
-        - Fixed test failures (GH#27,GH#28)
+  - Compatibility with Mojolicious 3.05+ (GH#24)
+  - Avoid deep recursion when exception template dies (GH#25,GH26)
+  - Fixed test failures (GH#27,GH#28)
 
 1.21    2012-06-05
-        - Fixed double TT rendering on error (Matthias Bethke (GH#21))
-        - Cache templates in tmpdir by default (Marcus Ramberg)
-        - Require Mojolicious 2.51 to avoid memory leaks (GH#19)
-        - Document the 'c' stash variable (RT#70866, Matthias Bethke)
-        - Fix memory leaks, add tests for them (GH#18, Magnus Holm)
-        - Use app->renderer->paths to find template directories (GH#17)
+  - Fixed double TT rendering on error (Matthias Bethke (GH#21))
+  - Cache templates in tmpdir by default (Marcus Ramberg)
+  - Require Mojolicious 2.51 to avoid memory leaks (GH#19)
+  - Document the 'c' stash variable (RT#70866, Matthias Bethke)
+  - Fix memory leaks, add tests for them (GH#18, Magnus Holm)
+  - Use app->renderer->paths to find template directories (GH#17)
 
 1.20    2011-08-01
-        - Drop use of MojoX namespace for Mojolicious::Plugin::TtRenderer::
+  - Drop use of MojoX namespace for Mojolicious::Plugin::TtRenderer::
           (GH#12, Cosimo Streppone)
 
 1.13    2011-06-07
-        - Compatibility with Mojolicious 1.3+
+  - Compatibility with Mojolicious 1.3+
 
 1.12    2011-02-28
-        - Inline wrappers and includes now work on Windows
+  - Inline wrappers and includes now work on Windows
           (GH#13, Christiaan Kras)
 
 1.11    2011-02-06
-        - Change to use relative paths (Marcus Ramberg)
-        - Add exception template for tests
+  - Change to use relative paths (Marcus Ramberg)
+  - Add exception template for tests
 
 1.10    2011-02-05
-        - Support Mojolicious 'layout'/'extends' (Maxim Vuets, Marcus
+  - Support Mojolicious 'layout'/'extends' (Maxim Vuets, Marcus
           Ramberg)
-        - Fix Strawberry Perl tests (RT#65282, Christiaan Kras, Ask)
-        - Update bugtracker URL in META.yml
+  - Fix Strawberry Perl tests (RT#65282, Christiaan Kras, Ask)
+  - Update bugtracker URL in META.yml
 
 1.0     2011-01-22
-        - Require (and be compatible with) Mojolicious 1.0+
-        - Added inline template support (Viacheslav Tykhanovskyi & Ask)
-        - Fix inline rendering and test failures (Marcus Ramberg)
-        - Fixed helper compatibility with Mojolicious 1.0 (Árpád Szász)
-        - Support new mojolicious error template (Marcus)
-        - Fix unicode test (Marcus & Spleenjack)
-        - Replaced deprecated Mojo dependence with Mojolicious (spleenjack)
+  - Require (and be compatible with) Mojolicious 1.0+
+  - Added inline template support (Viacheslav Tykhanovskyi & Ask)
+  - Fix inline rendering and test failures (Marcus Ramberg)
+  - Fixed helper compatibility with Mojolicious 1.0 (Árpád Szász)
+  - Support new mojolicious error template (Marcus)
+  - Fix unicode test (Marcus & Spleenjack)
+  - Replaced deprecated Mojo dependence with Mojolicious (spleenjack)
 
 0.40    2010-08-02
-        - Updated for newer Mojo (Viacheslav Tykhanovskyi)
-        - Added helpers (Viacheslav Tykhanovskyi)
-        - Documentation updates
+  - Updated for newer Mojo (Viacheslav Tykhanovskyi)
+  - Added helpers (Viacheslav Tykhanovskyi)
+  - Documentation updates
 
 0.31    2009-09-11
-        - Remove deprecated 'new' method
-        - Update MANIFEST (oops, thanks Sebastian)
+  - Remove deprecated 'new' method
+  - Update MANIFEST (oops, thanks Sebastian)
 
 0.30    2009-09-09
-        - Revert the change of template_path stash key
-        - Reflect recent changes in mojo project (v0.991251) (Sebastian Knapp)
-        - One test with Mojolicious added (Sebastian Knapp)
+  - Revert the change of template_path stash key
+  - Reflect recent changes in mojo project (v0.991251) (Sebastian Knapp)
+  - One test with Mojolicious added (Sebastian Knapp)
 
 0.21    2009-07-29
-        - Update stash key from 'template_path' to 'template' to
+  - Update stash key from 'template_path' to 'template' to
           match mojo change (Sebastian Knapp)
 
 0.20    2008-12-09
-        - Updates to work with Mojo 0.9
-        - Add default INCLUDE_PATH
-        - Made default compile dir not Unix specific (Viacheslav
+  - Updates to work with Mojo 0.9
+  - Add default INCLUDE_PATH
+  - Made default compile dir not Unix specific (Viacheslav
           Tykhanovskyi)
 
 0.10    2008-11-12
-        - Update to work with named parameters in new version of Mojo
-        - Instead of "tx" pass the context in the "c" variable
-        - Rename "new" to "build"
-        - Add real tests (Viacheslav Tykhanovskyi)
-        - Update to work with new error handling in Mojo
+  - Update to work with named parameters in new version of Mojo
+  - Instead of "tx" pass the context in the "c" variable
+  - Rename "new" to "build"
+  - Add real tests (Viacheslav Tykhanovskyi)
+  - Update to work with new error handling in Mojo
           (Viacheslav Tykhanovskyi)
 
 0.02    2008-11-10
-        - Add template_options parameter
-        - Fix Template dependency
+  - Add template_options parameter
+  - Fix Template dependency
 
 0.01    2008-11-09
-        - First version, released on an unsuspecting world.
+  - First version, released on an unsuspecting world.
