@@ -187,11 +187,11 @@ distribution, including the support files required for the full
 
 # AUTHOR
 
-original author: Ask Bjørn Hansen
+Original author: Ask Bjørn Hansen
 
-current maintainer: Graham Ollis <plicease@cpan.org>
+Current maintainer: Graham Ollis <plicease@cpan.org>
 
-contributors:
+Contributors:
 
 vti
 
@@ -225,7 +225,7 @@ uwisser
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Ask Bjørn Hansen.
+This software is copyright (c) 2015 by Ask Bjørn Hansen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
