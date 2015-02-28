@@ -206,9 +206,8 @@ sub _template_content {
     if(defined $options) {
         $data = $self->renderer->get_data_template($options);
     } else {
-        my $loader = Mojo::Loader->new;
         foreach my $class (@{ $self->renderer->classes }) {
-            $data = $loader->data($class, $t);
+            $data = Mojo::Loader::data_section($class, $t);
             last if $data;
         }
     }
