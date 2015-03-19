@@ -21,7 +21,7 @@ sub build {
     my $self = shift->SUPER::new(@_);
     weaken($self->{app});
     $self->_init(@_);
-    return sub { $self->_render(@_) }
+    sub { $self->_render(@_) }
 }
 
 sub _init {
@@ -68,7 +68,7 @@ sub _init {
     $self->tt(Template->new(\%config))
       or Carp::croak "Could not initialize Template object: $Template::ERROR";
 
-    return $self;
+    $self;
 }
 
 sub _render {
@@ -120,7 +120,7 @@ sub _render {
     # Error
     die $self->tt->error unless $ok;
 
-    return 1;
+    1;
 }
 
 1;    # End of Mojolicious::Plugin::TtRenderer::Engine
@@ -150,7 +150,7 @@ sub AUTOLOAD {
 
     die qq/Unknown helper: $method/ unless $self->ctx->app->renderer->helpers->{$method};
 
-    return $self->ctx->$method(@_);
+    $self->ctx->$method(@_);
 }
 
 1;
@@ -173,7 +173,7 @@ sub new {
     my $self = $class->SUPER::new(%params);
     $self->renderer($renderer);
     weaken($self->{renderer});
-    return $self;
+    $self;
 }
 
 sub renderer      { @_ > 1 ? $_[0]->{renderer}      = $_[1] : $_[0]->{renderer} }
@@ -216,7 +216,7 @@ sub _template_content {
         $data = '';
         $error = "$path: not found";
     }
-    return wantarray ? ($data, $error, time) : $data;
+    wantarray ? ($data, $error, time) : $data;
 }
 
 1;
