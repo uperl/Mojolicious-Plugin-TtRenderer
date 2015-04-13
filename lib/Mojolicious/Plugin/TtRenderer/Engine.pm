@@ -55,11 +55,13 @@ sub _init {
         %{$args{template_options} || {}},
     );
 
-    $config{COMPILE_DIR} //= $dir || do {
-      my $tmpdir = File::Spec->catdir(File::Spec->tmpdir, "ttr$<");
-      mkdir $tmpdir unless -d $tmpdir;
-      $tmpdir;
-    };
+    if ( !exists( $config{COMPILE_DIR} ) ) {
+        $config{COMPILE_DIR} //= $dir || do {
+          my $tmpdir = File::Spec->catdir(File::Spec->tmpdir, "ttr$<");
+          mkdir $tmpdir unless -d $tmpdir;
+          $tmpdir;
+        };
+    }
 
     $config{LOAD_TEMPLATES} =
       [Mojolicious::Plugin::TtRenderer::Provider->new(%config, renderer => $app->renderer)]
