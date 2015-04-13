@@ -223,6 +223,8 @@ spleenjack
 
 uwisser
 
+Dinis Lage
+
 # COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2015 by Ask Bjørn Hansen.

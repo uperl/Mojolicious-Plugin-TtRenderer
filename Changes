@@ -2,6 +2,9 @@ Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
 
+1.56      2015-04-13 12:29:00 -0400
+  - Only force template compiling if not specified by caller (GH#43 dlage++)
+
 1.55      2015-02-28 10:31:58 -0500
   - Mojo 6.x compat  
 
