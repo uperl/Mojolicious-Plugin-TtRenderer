@@ -232,6 +232,8 @@ __END__
 Bjørn
 Szász
 Árpád
+Романов
+Сергей
 
 =end stopwords
 
