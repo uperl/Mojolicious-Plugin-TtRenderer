@@ -189,7 +189,7 @@ distribution, including the support files required for the full
 
 Original author: Ask Bjørn Hansen
 
-Current maintainer: Graham Ollis <plicease@cpan.org>
+Current maintainer: Graham Ollis &lt;plicease@cpan.org>
 
 Contributors:
 

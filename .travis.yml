@@ -1,4 +1,7 @@
 language: perl
+
+sudo: false
+
 install:
   - cpanm -n Mojolicious
   - cpanm -n Template
