@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+  - Mojolicious 6.33 compatability
+  - Require Mojolicious 6.33
 
 1.56      2015-04-13 12:29:00 -0400
   - Only force template compiling if not specified by caller (GH#43 dlage++)

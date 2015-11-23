@@ -86,9 +86,6 @@ sub _render {
 
     my $helper = Mojolicious::Plugin::TtRenderer::Helper->new(ctx => $c);
 
-    # Purge previous result
-    $$output = '';
-
     # fixes for t/lite_app_with_default_layouts.t
     unless ($c->stash->{layout}) {
         $c->stash->{content} ||= $c->stash->{'mojo.content'}->{content};
@@ -110,10 +107,10 @@ sub _render {
                 $self->tt->process($ret[0], @params);
             }
             elsif (not defined $ret[0]) { # not found
-                return 0;
+                return;
             }
             else { # error
-                return 0 if $! == ENOENT && (not ref $ret[0]); # not found when not blessed exception
+                return if $! == ENOENT && (not ref $ret[0]); # not found when not blessed exception
                 die $ret[0];
             }
         }
@@ -121,8 +118,6 @@ sub _render {
 
     # Error
     die $self->tt->error unless $ok;
-
-    1;
 }
 
 1;    # End of Mojolicious::Plugin::TtRenderer::Engine
