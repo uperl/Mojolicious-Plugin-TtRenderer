@@ -2,7 +2,7 @@ package Mojolicious::Plugin::TtRenderer::Engine;
 
 use warnings;
 use strict;
-use v5.10;
+use 5.010001;
 use base 'Mojo::Base';
 use Carp ();
 use File::Spec ();
