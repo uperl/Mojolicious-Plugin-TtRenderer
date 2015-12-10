@@ -1,2 +1,2 @@
-*.pm linguist-language=Perl
+*.pl linguist-language=Perl
 *.h linguist-language=C
