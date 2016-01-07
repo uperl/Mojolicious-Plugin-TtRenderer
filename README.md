@@ -1,4 +1,4 @@
-# Mojolicious::Plugin::TtRenderer [![Build Status](https://secure.travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer.png)](http://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer)
+# Mojolicious::Plugin::TtRenderer [![Build Status](https://secure.travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer.png)](http://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer) [![Build status](https://ci.appveyor.com/api/projects/status/7suqp31y8k5eyif6/branch/master?svg=true)](https://ci.appveyor.com/project/plicease/Mojolicious-Plugin-TtRenderer/branch/master)
 
 Template Renderer Plugin for Mojolicious
 
@@ -227,7 +227,7 @@ Dinis Lage
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Ask Bjørn Hansen.
+This software is copyright (c) 2016 by Ask Bjørn Hansen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
