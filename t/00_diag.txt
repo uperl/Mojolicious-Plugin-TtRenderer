@@ -1,7 +1,0 @@
-EV
-ExtUtils::MakeMaker
-Mojolicious
-POSIX
-Template
-Template::Provider
-Test::More
