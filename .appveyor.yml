@@ -10,6 +10,7 @@ install:
   - SET PERL_MB_OPT=--install_base C:/Perl5
   - SET PERL_MM_OPT=INSTALL_BASE=C:/Perl5
   - cpanm -n Dist::Zilla
+  - cpanm -n Dist::Zilla::Plugin::Git::Check
   - dzil authordeps --missing | cpanm -n
   - dzil listdeps --missing | cpanm -n
 
