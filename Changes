@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.58      2017-03-14 11:01:17 -0400
   - More mojolicious deprecations
 
 1.57      2015-11-23 17:16:39 -0500
