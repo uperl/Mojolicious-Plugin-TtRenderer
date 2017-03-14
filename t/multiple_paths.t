@@ -12,11 +12,12 @@ use Test::More tests => 6;
 use Mojolicious::Lite;
 use Test::Mojo;
 use File::Temp qw( tempdir );
+use File::Spec;
 
 # Silence
 app->log->level('fatal');
 
-my @paths = map { app->home->rel_dir($_) } "templates/multiple_first", "templates/multiple_second";
+my @paths = map { File::Spec->catdir(app->home, $_) } "templates/multiple_first", "templates/multiple_second";
 app->renderer->paths([@paths]);
 
 plugin 'TtRenderer' => {template_options => { COMPILE_DIR => tempdir( CLEANUP => 1 ) }};

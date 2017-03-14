@@ -1,6 +1,7 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+  - More mojolicious deprecations
 
 1.57      2015-11-23 17:16:39 -0500
   - Mojolicious 6.33 compatability
