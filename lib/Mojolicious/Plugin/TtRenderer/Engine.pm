@@ -35,7 +35,7 @@ sub _init {
     if($dir=$args{cache_dir}) {
 
       if($app && substr($dir,0,1) ne '/') {
-        $dir=$app->home->rel_dir($dir);
+        $dir=$app->home->rel_file($dir);
       }
     }
 
