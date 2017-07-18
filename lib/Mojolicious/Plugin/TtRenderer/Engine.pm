@@ -35,7 +35,7 @@ sub _init {
     if($dir=$args{cache_dir}) {
 
       if($app && substr($dir,0,1) ne '/') {
-        $dir=$app->home->rel_dir($dir);
+        $dir=$app->home->rel_file($dir);
       }
     }
 
@@ -187,11 +187,11 @@ sub _template_content {
     my ($path) = @_;
 
     my $options = delete $self->{options};
-    
+
     # Convert backslashes to forward slashes to make inline templates work on Windows
     $path =~ s/\\/\//g;
     my ($t) = ($path =~ m{templates\/(.*)$});
-    
+
     if (-r $path) {
         return $self->SUPER::_template_content(@_);
     }
@@ -238,13 +238,13 @@ Add the handler:
 
  sub startup {
      ...
- 
+
      # Via mojolicious plugin
      $self->plugin(tt_renderer => {template_options => {FILTERS => [ ... ]}});
- 
+
      # Or manually
      use Mojolicious::Plugin::TtRenderer::Engine;
- 
+
      my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
          mojo => $self,
          template_options => {
@@ -267,7 +267,7 @@ See L<Mojolicious::Plugin::TtRenderer> for details on the plugin interface to th
 This module provides an engine for the rendering of L<Template Toolkit|Template> templates
 within a Mojolicious context.  Templates may be, stored on the local file system, provided
 inline by the controller or included in the C<__DATA__> section.  Where possible this modules
-attempts to provide a TT analogue interface to the L<Perlish templates|Mojo::Template> which 
+attempts to provide a TT analogue interface to the L<Perlish templates|Mojo::Template> which
 come with Mojolicious.
 
 =head1 RENDERING
@@ -322,9 +322,9 @@ templates. Will default to a temp-dir if not set.
 
 =head1 SEE ALSO
 
-L<Mojolicious::Plugin::TtRenderer>, 
-L<Mojolicious>, 
-L<Mojolicious::Guides>, 
+L<Mojolicious::Plugin::TtRenderer>,
+L<Mojolicious>,
+L<Mojolicious::Guides>,
 L<http://mojolicious.org>.
 
 =cut

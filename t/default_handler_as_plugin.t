@@ -16,6 +16,7 @@ app->plugin(
             COMPILE_EXT  => '.ttc',
             # ... anything else to be passed on to TT should go here
         },
+        cache_dir => 'tmpX',
     }
 );
 
@@ -50,4 +51,3 @@ anything
 
 @@ bar.html.tt
 sometimes, the bar, he eats you...
-
