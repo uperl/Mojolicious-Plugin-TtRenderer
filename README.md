@@ -225,6 +225,8 @@ uwisser
 
 Dinis Lage
 
+jay mortensen (GMORTEN)
+
 # COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2017 by Ask Bjørn Hansen.

@@ -19,7 +19,4 @@ build: off
 test_script:
   - dzil test -v
 
-cache:
-  - C:\Perl5
-
 shallow_clone: true
