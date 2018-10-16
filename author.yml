@@ -30,6 +30,8 @@ pod_spelling_system:
     - Dinis
     - Lage
     - app
+    - GMORTEN
+    - mortensen
 
 pod_coverage:
   # format is "Class#method" or "Class", regex allowed
