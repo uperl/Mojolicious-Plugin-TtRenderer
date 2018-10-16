@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.60      2018-10-16 09:57:46 -0400
   - Template 2.28 compatability
 
 1.59      2017-07-18 21:57:51 -0400
