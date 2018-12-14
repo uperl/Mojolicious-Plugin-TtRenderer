@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if cip exec perl -e 'exit !! ($] >= 5.016)'; then
-  cip exec cpanm -n Socket AppConfig
-fi
+#if cip exec perl -e 'exit !! ($] >= 5.016)'; then
+#  cip exec cpanm -n Socket AppConfig
+#fi
 
