@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use 5.016;
 
 BEGIN { $ENV{MOJO_MODE}='testing'; };
 

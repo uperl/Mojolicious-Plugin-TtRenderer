@@ -3,7 +3,7 @@ package
 use strict;
 use warnings;
 1;
-__DATA__ 
+__DATA__
 
 @@ include.inc
 Hello

@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use 5.016;
 use Test::More tests => 9;
 use Test::Mojo;
 use File::Temp qw( tempdir );

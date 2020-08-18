@@ -1,4 +1,4 @@
-# Mojolicious::Plugin::TtRenderer [![Build Status](https://secure.travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer.png)](http://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer) [![Build status](https://ci.appveyor.com/api/projects/status/7suqp31y8k5eyif6/branch/master?svg=true)](https://ci.appveyor.com/project/plicease/Mojolicious-Plugin-TtRenderer/branch/master)
+# Mojolicious::Plugin::TtRenderer [![Build Status](https://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer.svg)](http://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer) [![Build status](https://ci.appveyor.com/api/projects/status/7suqp31y8k5eyif6/branch/master?svg=true)](https://ci.appveyor.com/project/plicease/Mojolicious-Plugin-TtRenderer/branch/master)
 
 Template Renderer Plugin for Mojolicious
 
@@ -6,17 +6,21 @@ Template Renderer Plugin for Mojolicious
 
 [Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite):
 
-    plugin 'tt_renderer';
+```
+plugin 'tt_renderer';
+```
 
 [Mojolicious](https://metacpan.org/pod/Mojolicious)
 
-    $self->plugin('tt_renderer');
+```perl
+$self->plugin('tt_renderer');
+```
 
 # DESCRIPTION
 
-This plugin is a simple Template Toolkit renderer for [Mojolicious](https://metacpan.org/pod/Mojolicious). 
-Its defaults are usually reasonable, although for finer grain detail in 
-configuration you may want to use 
+This plugin is a simple Template Toolkit renderer for [Mojolicious](https://metacpan.org/pod/Mojolicious).
+Its defaults are usually reasonable, although for finer grain detail in
+configuration you may want to use
 [Mojolicious::Plugin::TtRenderer::Engine](https://metacpan.org/pod/Mojolicious::Plugin::TtRenderer::Engine) directly.
 
 # OPTIONS
@@ -25,37 +29,41 @@ These are the options that can be passed in as arguments to this plugin.
 
 ## template\_options
 
-Configuration hash passed into [Template](https://metacpan.org/pod/Template)'s constructor, see 
+Configuration hash passed into [Template](https://metacpan.org/pod/Template)'s constructor, see
 [Template Toolkit's configuration summary](https://metacpan.org/pod/Template#CONFIGURATION-SUMMARY)
 for details.  Here is an example using the [Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite) form:
 
-    plugin 'tt_renderer' => {
-      template_options => {
-        PRE_CHOMP => 1,
-        POST_CHOMP => 1,
-        TRIM => 1,
-      },
-    };
+```perl
+plugin 'tt_renderer' => {
+  template_options => {
+    PRE_CHOMP => 1,
+    POST_CHOMP => 1,
+    TRIM => 1,
+  },
+};
+```
 
 Here is the same example using the full [Mojolicious](https://metacpan.org/pod/Mojolicious) app form:
 
-    package MyApp;
-    
-    use Mojo::Base qw( Mojolicious );
-    
-    sub startup {
-      my($self) = @_;
-      
-      $self->plugin('tt_renderer' => {
-        template_options => {
-          PRE_CHOMP => 1,
-          POST_CHOMP => 1,
-          TRIM => 1,
-        },
-      }
-      
-      ...
-    }
+```perl
+package MyApp;
+
+use Mojo::Base qw( Mojolicious );
+
+sub startup {
+  my($self) = @_;
+
+  $self->plugin('tt_renderer' => {
+    template_options => {
+      PRE_CHOMP => 1,
+      POST_CHOMP => 1,
+      TRIM => 1,
+    },
+  }
+
+  ...
+}
+```
 
 These options will be used if you do not override them:
 
@@ -90,11 +98,15 @@ These options will be used if you do not override them:
 Specifies the directory in which compiled template files are
 written.  This:
 
-    plugin 'tt_renderer', { cache_dir => 'some/path' };
+```perl
+plugin 'tt_renderer', { cache_dir => 'some/path' };
+```
 
 is equivalent to
 
-    plugin 'tt_renderer', { template_options { COMPILE_DIR => 'some/path' } };
+```perl
+plugin 'tt_renderer', { template_options { COMPILE_DIR => 'some/path' } };
+```
 
 except in the first example relative paths are relative to the [Mojolicious](https://metacpan.org/pod/Mojolicious)
 app's home directory (`$app->home`).
@@ -105,84 +117,92 @@ app's home directory (`$app->home`).
 
 Helpers are available via the `h` entry in the stash.
 
-    <a href="[% h.url_for('index') %]">go back to index</a>
+```
+<a href="[% h.url_for('index') %]">go back to index</a>
+```
 
 ## c
 
 The current controller instance can be accessed as `c`.
 
-    I see you are requesting a document from [% c.req.headers.host %].
+```
+I see you are requesting a document from [% c.req.headers.host %].
+```
 
 # EXAMPLES
 
 [Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite) example:
 
-    use Mojolicious::Lite;
-    
-    plugin 'tt_renderer';
-    
-    get '/' => sub {
-      my $self = shift;
-      $self->render('index');
-    };
-    
-    app->start;
-    
-    __DATA__
-    
-    @@ index.html.tt
-    [% 
-       WRAPPER 'layouts/default.html.tt' 
-       title = 'Welcome'
-    %]
-    <p>Welcome to the Mojolicious real-time web framework!</p>
-    <p>Welcome to the TtRenderer plugin!</p>
-    [% END %]
-    
-    @@ layouts/default.html.tt
-    <!DOCTYPE html>
-    <html>
-      <head><title>[% title %]</title></head>
-      <body>[% content %]</body>
-    </html>
+```perl
+use Mojolicious::Lite;
+
+plugin 'tt_renderer';
+
+get '/' => sub {
+  my $self = shift;
+  $self->render('index');
+};
+
+app->start;
+
+__DATA__
+
+@@ index.html.tt
+[%
+   WRAPPER 'layouts/default.html.tt'
+   title = 'Welcome'
+%]
+<p>Welcome to the Mojolicious real-time web framework!</p>
+<p>Welcome to the TtRenderer plugin!</p>
+[% END %]
+
+@@ layouts/default.html.tt
+<!DOCTYPE html>
+<html>
+  <head><title>[% title %]</title></head>
+  <body>[% content %]</body>
+</html>
+```
 
 [Mojolicious](https://metacpan.org/pod/Mojolicious) example:
 
-    package MyApp;
-    use Mojo::Base 'Mojolicious';
-    
-    sub startup {
-      my $self = shift;
-      $self->plugin('tt_renderer');
-      my $r = $self->routes;
-      $r->get('/')->to('example#welcome');
-    }
-    
-    1;
+```perl
+package MyApp;
+use Mojo::Base 'Mojolicious';
 
-    package MyApp::Example;
-    use Mojo::Base 'Mojolicious::Controller';
-    
-    # This action will render a template
-    sub welcome {
-      my $self = shift;
-    
-      # Render template "example/welcome.html.tt" with message
-      $self->render(
-        message => 'Looks like your TtRenderer is working!');
-    }
-    
-    1;
+sub startup {
+  my $self = shift;
+  $self->plugin('tt_renderer');
+  my $r = $self->routes;
+  $r->get('/')->to('example#welcome');
+}
+
+1;
+
+package MyApp::Example;
+use Mojo::Base 'Mojolicious::Controller';
+
+# This action will render a template
+sub welcome {
+  my $self = shift;
+
+  # Render template "example/welcome.html.tt" with message
+  $self->render(
+    message => 'Looks like your TtRenderer is working!');
+}
+
+1;
+```
 
 These are also included with the `Mojolicious::Plugin::TtRenderer`
-distribution, including the support files required for the full 
+distribution, including the support files required for the full
 [Mojolicious](https://metacpan.org/pod/Mojolicious) app example.
 
 # SEE ALSO
 
-[Mojolicious::Plugin::TtRenderer::Engine](https://metacpan.org/pod/Mojolicious::Plugin::TtRenderer::Engine), 
-[Mojolicious](https://metacpan.org/pod/Mojolicious), 
-[Mojolicious::Guides](https://metacpan.org/pod/Mojolicious::Guides), 
+[Mojolicious::Plugin::TtRenderer::Engine](https://metacpan.org/pod/Mojolicious::Plugin::TtRenderer::Engine),
+[Mojolicious](https://metacpan.org/pod/Mojolicious),
+[Mojolicious::Guides](https://metacpan.org/pod/Mojolicious::Guides),
 [http://mojolicious.org](http://mojolicious.org).
 
 # AUTHOR

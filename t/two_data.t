@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use 5.016;
 
 BEGIN { $ENV{MOJO_MODE} = 'testing' };
 
@@ -13,8 +14,7 @@ use Mojolicious::Lite;
 use Test::Mojo;
 use File::Temp qw( tempdir );
 
-use FindBin ();
-use lib "$FindBin::Bin/templates";
+use lib "t/templates";
 
 use_ok 'Foo';
 
@@ -22,7 +22,7 @@ push @{app->renderer->classes}, 'Foo';
 
 plugin 'tt_renderer' => {template_options => {PRE_CHOMP => 1, POST_CHOMP => 1, TRIM => 1, COMPILE_DIR => tempdir( CLEANUP => 1 )}};
 
-app->log->level('fatal'); 
+app->log->level('fatal');
 
 get '/with_include' => 'include';
 get '/with_wrapper' => 'wrapper';
@@ -42,7 +42,7 @@ __DATA__
 rappe
 [%- END -%]
 
-@@ include.html.tt 
+@@ include.html.tt
 [%- INCLUDE 'include.inc' -%]
 Include!
 [%- INCLUDE 'includes/sub/include.inc' -%]

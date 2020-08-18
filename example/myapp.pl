@@ -12,8 +12,8 @@ app->start;
 __DATA__
 
 @@ index.html.tt
-[% 
-   WRAPPER 'layouts/default.html.tt' 
+[%
+   WRAPPER 'layouts/default.html.tt'
    title = 'Welcome'
 %]
 <p>Welcome to the Mojolicious real-time web framework!</p>
