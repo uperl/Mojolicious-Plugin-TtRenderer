@@ -61,7 +61,7 @@ if(eval q{ use Devel::Cycle; 1 })
     my $arg = shift;
     # Template::Provider (from which M::P::T::Provider inherits) has some cycles which are freed manaully by
     # its DESTROY method, so we skip reporting those cycles.
-    unless(scalar(scalar(grep { ref($_->[2]) eq 'Mojolicious::Plugin::TtRenderer::Provider' && $_->[1] =~ /^(HEAD|TAIL|LOOKUP)$/ } @$arg)) > 0)
+    unless(scalar(scalar(grep { ref($_->[2]) eq 'Mojolicious::Plugin::TtRenderer::Provider' && $_->[1] =~ /^(HEAD|TAIL|LOOKUP)$/ } @$arg)) > 0) ## no critic (BuiltinFunctions::ProhibitBooleanGrep)
     {
       #use YAML ();
       #diag YAML::Dump([ map { [ $_->[0], $_->[1], ref($_->[2]), ref($_->[3]) ] } @$arg ]);

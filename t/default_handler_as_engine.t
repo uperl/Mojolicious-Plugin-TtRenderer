@@ -3,7 +3,6 @@ use warnings;
 use Test::More tests => 9;
 use Test::Mojo;
 use File::Temp qw( tempdir );
-use FindBin '$Bin';
 
 use Mojolicious::Lite;
 use Mojolicious::Plugin::TtRenderer::Engine ();
@@ -13,7 +12,6 @@ my $tt = Mojolicious::Plugin::TtRenderer::Engine->build(
     template_options => {
         UNICODE  => 1,
         ENCODING => 'UTF-8',
-        #INCLUDE_PATH => "$Bin/templates",
         COMPILE_DIR  => tempdir( CLEANUP => 1 ),
     }
 );
