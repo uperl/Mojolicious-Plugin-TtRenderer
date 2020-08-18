@@ -2,7 +2,7 @@ package Mojolicious::Plugin::TtRenderer;
 
 use strict;
 use warnings;
-use 5.010001;
+use 5.016;
 
 # ABSTRACT: Template Renderer Plugin for Mojolicious
 # VERSION

@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use 5.016;
 use File::Temp qw( tempdir );
 BEGIN { $ENV{MOJO_HOME} = tempdir( CLEANUP => 1) }
 use Test::More tests => 6;

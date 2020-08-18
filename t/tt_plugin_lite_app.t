@@ -4,6 +4,7 @@
 
 use strict;
 use warnings;
+use 5.016;
 
 BEGIN {
   unless($^O eq 'MSWin32') {

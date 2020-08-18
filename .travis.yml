@@ -27,9 +27,6 @@ jobs:
     - env: CIP_TAG=5.20
     - env: CIP_TAG=5.18
     - env: CIP_TAG=5.16
-    - env: CIP_TAG=5.14
-    - env: CIP_TAG=5.12
-    - env: CIP_TAG=5.10.1
 
 branches:
   only:
