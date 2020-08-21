@@ -94,7 +94,6 @@ sub _render {
     my @params = ({%{$c->stash}, c => $c, h => $helper}, $output, {binmode => ':utf8'});
     my $provider = $self->tt->{SERVICE}->{CONTEXT}->{LOAD_TEMPLATES}->[0];
     $provider->options($options);
-    $provider->ctx($c);
 
     my $ok = do {
         if (defined $inline) {
@@ -173,7 +172,6 @@ sub new {
 }
 
 sub renderer      { @_ > 1 ? weaken($_[0]->{renderer} = $_[1]) : $_[0]->{renderer} }
-sub ctx           { @_ > 1 ? weaken($_[0]->{ctx}      = $_[1]) : $_[0]->{ctx} }
 sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
 
 sub _template_modified {
