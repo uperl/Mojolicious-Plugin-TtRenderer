@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use 5.016;
-use Test::More tests => 9;
+use Test::More tests => 10;
 use Test::Mojo;
 use File::Temp qw( tempdir );
 
@@ -41,6 +41,24 @@ $t->get_ok('/bar')
 $t->get_ok('/grimlock')
     ->status_is(200)
     ->content_like(qr{King});
+
+my $cleaned_up = 0;
+sub Guard::DESTROY { $cleaned_up++ };
+
+subtest cleanup => sub {
+    plan tests => 4;
+
+    get '/leak-check' => sub {
+        my $c = shift;
+        $c->stash(
+            free_me => bless({}, 'Guard'),
+            template => 'bar',
+        );
+    };
+
+    $t->get_ok('/leak-check')->status_is(200)->content_like(qr/bar/);
+    is $cleaned_up, 1, 'object in stash went out of scope after hit';
+};
 
 __DATA__
 
