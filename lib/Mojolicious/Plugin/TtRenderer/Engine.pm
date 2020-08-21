@@ -169,12 +169,11 @@ sub new {
 
     my $self = $class->SUPER::new(%params);
     $self->renderer($renderer);
-    weaken($self->{renderer});
     $self;
 }
 
-sub renderer      { @_ > 1 ? $_[0]->{renderer}      = $_[1] : $_[0]->{renderer} }
-sub ctx           { @_ > 1 ? $_[0]->{ctx}           = $_[1] : $_[0]->{ctx} }
+sub renderer      { @_ > 1 ? weaken($_[0]->{renderer} = $_[1]) : $_[0]->{renderer} }
+sub ctx           { @_ > 1 ? weaken($_[0]->{ctx}      = $_[1]) : $_[0]->{ctx} }
 sub options       { @_ > 1 ? $_[0]->{options}       = $_[1] : $_[0]->{options} }
 
 sub _template_modified {
