@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.61      2020-09-02 06:05:42 -0600
   - Require Perl 5.16
   - Free stash when request is done, instead of during the next request (gh#51, mattlaw++)
 
