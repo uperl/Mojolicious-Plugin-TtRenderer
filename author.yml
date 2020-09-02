@@ -32,6 +32,7 @@ pod_spelling_system:
     - app
     - GMORTEN
     - mortensen
+    - MATTLAW
 
 pod_coverage:
   # format is "Class#method" or "Class", regex allowed

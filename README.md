@@ -247,6 +247,8 @@ Dinis Lage
 
 jay mortensen (GMORTEN)
 
+Matthew Lawrence (MATTLAW)
+
 # COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2009-2018 by Ask Bjørn Hansen.
