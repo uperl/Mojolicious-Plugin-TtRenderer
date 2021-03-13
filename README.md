@@ -1,4 +1,4 @@
-# Mojolicious::Plugin::TtRenderer [![Build Status](https://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer.svg)](http://travis-ci.org/plicease/Mojolicious-Plugin-TtRenderer) [![Build status](https://ci.appveyor.com/api/projects/status/7suqp31y8k5eyif6/branch/master?svg=true)](https://ci.appveyor.com/project/plicease/Mojolicious-Plugin-TtRenderer/branch/master)
+# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/plicease/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg)
 
 Template Renderer Plugin for Mojolicious
 
