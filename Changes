@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+  - Documentation improvements (gh#53)
+  - Moved to new GitHub org
 
 1.61      2020-09-02 06:05:42 -0600
   - Require Perl 5.16

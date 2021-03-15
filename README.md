@@ -1,4 +1,4 @@
-# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/plicease/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg)
+# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg)
 
 Template Renderer Plugin for Mojolicious
 
@@ -10,7 +10,7 @@ Template Renderer Plugin for Mojolicious
 plugin 'tt_renderer';
 ```
 
-[Mojolicious](https://metacpan.org/pod/Mojolicious)
+[Mojolicious](https://metacpan.org/pod/Mojolicious):
 
 ```perl
 $self->plugin('tt_renderer');
@@ -131,68 +131,99 @@ I see you are requesting a document from [% c.req.headers.host %].
 
 # EXAMPLES
 
-[Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite) example:
+- [Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite) example:
 
-```perl
-use Mojolicious::Lite;
+    ```perl
+    use Mojolicious::Lite;
 
-plugin 'tt_renderer';
+    plugin 'tt_renderer';
 
-get '/' => sub {
-  my $self = shift;
-  $self->render('index');
-};
+    get '/' => sub {
+      my $self = shift;
+      $self->render('index');
+    };
 
-app->start;
+    app->start;
 
-__DATA__
+    __DATA__
 
-@@ index.html.tt
-[%
-   WRAPPER 'layouts/default.html.tt'
-   title = 'Welcome'
-%]
-<p>Welcome to the Mojolicious real-time web framework!</p>
-<p>Welcome to the TtRenderer plugin!</p>
-[% END %]
+    @@ index.html.tt
+    [%
+       WRAPPER 'layouts/default.html.tt'
+       title = 'Welcome'
+    %]
+    <p>Welcome to the Mojolicious real-time web framework!</p>
+    <p>Welcome to the TtRenderer plugin!</p>
+    [% END %]
 
-@@ layouts/default.html.tt
-<!DOCTYPE html>
-<html>
-  <head><title>[% title %]</title></head>
-  <body>[% content %]</body>
-</html>
-```
+    @@ layouts/default.html.tt
+    <!DOCTYPE html>
+    <html>
+      <head><title>[% title %]</title></head>
+      <body>[% content %]</body>
+    </html>
+    ```
 
-[Mojolicious](https://metacpan.org/pod/Mojolicious) example:
+- [Mojolicious](https://metacpan.org/pod/Mojolicious) example:
 
-```perl
-package MyApp;
-use Mojo::Base 'Mojolicious';
+    `lib/MyApp.pm`:
 
-sub startup {
-  my $self = shift;
-  $self->plugin('tt_renderer');
-  my $r = $self->routes;
-  $r->get('/')->to('example#welcome');
-}
+    ```perl
+    package MyApp;
+    use Mojo::Base 'Mojolicious';
 
-1;
+    sub startup {
+      my $self = shift;
+      $self->plugin('tt_renderer');
+      my $r = $self->routes;
+      $r->get('/')->to('example#welcome');
+    }
 
-package MyApp::Example;
-use Mojo::Base 'Mojolicious::Controller';
+    1;
+    ```
 
-# This action will render a template
-sub welcome {
-  my $self = shift;
+    `lib/MyApp/Example.pm`:
 
-  # Render template "example/welcome.html.tt" with message
-  $self->render(
-    message => 'Looks like your TtRenderer is working!');
-}
+    ```perl
+    package MyApp::Example;
+    use Mojo::Base 'Mojolicious::Controller';
 
-1;
-```
+    # This action will render a template
+    sub welcome {
+      my $self = shift;
+
+      # Render template "example/welcome.html.tt" with message
+      $self->render(
+        message => 'Looks like your TtRenderer is working!');
+    }
+
+    1;
+    ```
+
+    `templates/example/welcome.html.tt`:
+
+    ```
+    [%
+      WRAPPER 'layouts/default.html.tt'
+      title = 'Welcome'
+    %]
+    <h2>[% message %]</h2>
+    This page was generated from the template "templates/example/welcome.html.tt"
+    and the layout "templates/layouts/default.html.tt",
+    <a href="[% url_for %]">click here</a> to reload the page or
+    <a href="/index.html">here</a> to move forward to a static page.
+    [% END %]
+    ```
+
+    `templates/layouts/default.html.tt`:
+
+    ```
+    <!DOCTYPE html>
+    <html>
+      <head><title>[% title %]</title></head>
+      <body>[% content %]</body>
+    </html>
+    ```
 
 These are also included with the `Mojolicious::Plugin::TtRenderer`
 distribution, including the support files required for the full
@@ -251,7 +282,7 @@ Matthew Lawrence (MATTLAW)
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009-2018 by Ask Bjørn Hansen.
+This software is copyright (c) 2009-2021 by Ask Bjørn Hansen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

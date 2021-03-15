@@ -45,7 +45,7 @@ L<Mojolicious::Lite>:
 
  plugin 'tt_renderer';
 
-L<Mojolicious>
+L<Mojolicious>:
 
  $self->plugin('tt_renderer');
 
@@ -156,15 +156,31 @@ The current controller instance can be accessed as C<c>.
 
 =head1 EXAMPLES
 
-L<Mojolicious::Lite> example:
+=over 4
+
+=item L<Mojolicious::Lite> example:
 
 # EXAMPLE: example/myapp.pl
 
-L<Mojolicious> example:
+=item L<Mojolicious> example:
+
+C<lib/MyApp.pm>:
 
 # EXAMPLE: example/myapp/lib/MyApp.pm
 
+C<lib/MyApp/Example.pm>:
+
 # EXAMPLE: example/myapp/lib/MyApp/Example.pm
+
+C<templates/example/welcome.html.tt>:
+
+# EXAMPLE: example/myapp/templates/example/welcome.html.tt
+
+C<templates/layouts/default.html.tt>:
+
+# EXAMPLE: example/myapp/templates/layouts/default.html.tt
+
+=back
 
 These are also included with the C<Mojolicious::Plugin::TtRenderer>
 distribution, including the support files required for the full
