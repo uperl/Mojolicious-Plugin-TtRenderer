@@ -1,6 +1,8 @@
 Revision history for Mojolicious::Plugin::TtRenderer
 
 {{$NEXT}}
+
+1.62      2021-03-15 04:32:27 -0600
   - Documentation improvements (gh#53)
   - Moved to new GitHub org
 
