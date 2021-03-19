@@ -1,4 +1,4 @@
-# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg)
+# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg) ![windows](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/windows/badge.svg) ![macos](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/macos/badge.svg) ![cygwin](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/cygwin/badge.svg) ![msys2-mingw](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/msys2-mingw/badge.svg)
 
 Template Renderer Plugin for Mojolicious
 
