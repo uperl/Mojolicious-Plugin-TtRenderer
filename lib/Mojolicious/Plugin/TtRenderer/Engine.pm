@@ -210,7 +210,7 @@ sub _template_content {
         $data = '';
         $error = "$path: not found";
     }
-    wantarray ? ($data, $error, time) : $data;  ## no critic (Freenode::Wantarray)
+    wantarray ? ($data, $error, time) : $data;  ## no critic (Community::Wantarray)
 }
 
 1;
