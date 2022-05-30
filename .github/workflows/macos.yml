@@ -27,7 +27,7 @@ jobs:
 
       - name: Set up Perl
         run: |
-          brew install perl
+          brew install perl libffi libarchive
           curl https://cpanmin.us | perl - App::cpanminus -n
           echo "/Users/runner/perl5/bin" >> $GITHUB_PATH
 
