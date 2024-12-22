@@ -2,3 +2,5 @@
 /.build
 /example/myapp/log/development.log
 *.swp
+*.old
+*.orig
