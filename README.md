@@ -1,4 +1,4 @@
-# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg) ![windows](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/windows/badge.svg) ![macos](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/macos/badge.svg) ![cygwin](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/cygwin/badge.svg)
+# Mojolicious::Plugin::TtRenderer ![linux](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/linux/badge.svg) ![windows](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/windows/badge.svg) ![macos](https://github.com/uperl/Mojolicious-Plugin-TtRenderer/workflows/macos/badge.svg)
 
 Template Renderer Plugin for Mojolicious
 
@@ -282,7 +282,7 @@ Matthew Lawrence (MATTLAW)
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009-2022 by Ask Bjørn Hansen.
+This software is copyright (c) 2009-2024 by Ask Bjørn Hansen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
